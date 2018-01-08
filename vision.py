@@ -42,6 +42,9 @@ def debugPrintMarker(marker):
     print("Distance: " + marker.polar.distance_meters())
     print("Rot X: " + marker.polar.rot_x_deg ())
     print("Rot Y: " + marker.polar.rot_y_deg ())
+    print("X: " + marker.cartesian.x())
+    print("Y: " + marker.cartesian.y())
+    print("Z: " + marker.cartesian.z())
     print()
 
 
