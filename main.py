@@ -7,10 +7,10 @@ def main():
 
     while True:
         try:
-            markers = robot.see()
+            markers = robot.camera.see()
             for each in markers:
                 debugPrintMarker(each)
                 getOrientation(each)
-        except error as e:
+        except Exception as e:
             print("Error")
             print(e)
