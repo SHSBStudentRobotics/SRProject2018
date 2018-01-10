@@ -10,4 +10,10 @@ class MotorBoard:
 
 class VirtualRobot:
     motor_board = MotorBoard()
-    
+
+    def OutputValues(self):
+        print("MOTOR M0")
+        print(self.motor_board.m0)
+
+        print("MOTOR M1")
+        print(self.motor_board.m1)
