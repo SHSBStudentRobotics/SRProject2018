@@ -6,9 +6,11 @@ def PowerMotor(SInstance, MotorToChange, Value):
     # MotorToChange = The index of the motor being powered
     # Value = The value of the change being done
 
+    # TODO: ADD HANDLER FOR COAST
+
     if abs(Value - MotorList[MotorToChange]) > MAXSAFECHANGE:
-        if Value >= 0: Value = MotorList[MotorToChange] + MAXSAFECHANGE
-        if Value < 0: Value = MotorList[MotorToChange] - MAXSAFECHANGE
+        if Value - MotorList[MotorToChange] >= 0: Value = MotorList[MotorToChange] + MAXSAFECHANGE
+        if Value - MotorList[MotorToChange] < 0: Value = MotorList[MotorToChange] - MAXSAFECHANGE
 
     if Value > 1: Value = 1
     if Value < -1: Value = -1
