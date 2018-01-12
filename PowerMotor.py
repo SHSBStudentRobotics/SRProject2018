@@ -1,7 +1,7 @@
 MotorList = [0,0] # Pull this from motors
 MAXSAFECHANGE = 0.5
 
-def PowerMotor(SInstance, MotorToChange, Value):
+def powerMotor(SInstance, MotorToChange, Value):
     # SInstance = Self instance, i.e. The robot instance from the API
     # MotorToChange = The index of the motor being powered
     # Value = The value of the change being done
