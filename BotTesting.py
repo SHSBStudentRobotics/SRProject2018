@@ -18,7 +18,7 @@ while MotorList[0] > -1:
 
 class TestHardware(unittest.TestCase):
     def test_PowerMotor(self):
-        r = MockRobot(motor_board = MockMotorBoard ,camera = None)
+        r = MockRobot(motor_board = MockMotorBoard() ,camera = None)
 
         powerMotor(r, 0, 1)
         self.assertEqual(r.motor_board.m0, 0.5)
