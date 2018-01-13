@@ -25,5 +25,9 @@ class MockCameraJSONReader():
         time.sleep(self.CAMERADELAY)
         return self.cameraData[(self.imageCounter - 1) % len(self.cameraData)]
 
+    #Returns a particular image, rather than iterating through them, for consistent testing
+    #In the unit testing framework.
+    def seeImage(self, imageID):
+        return self.cameraData[imageID % len(self.cameraData)]
 
 

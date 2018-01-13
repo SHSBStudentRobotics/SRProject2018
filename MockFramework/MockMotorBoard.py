@@ -1,3 +1,8 @@
+global BRAKE
+BRAKE = 0
+
+global COAST
+COAST = "coast"
 
 #A Mock motor board that prints out every change.
 class MockMotorBoardPrinter:
