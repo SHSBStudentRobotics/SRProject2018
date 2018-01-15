@@ -1,5 +1,4 @@
-import json
-import time
+import time, os, json
 
 #A Mock Mamera object that reads in a json file made by JSONCameraTool
 #When see() is called it returns the camera data , iterating through each
@@ -12,13 +11,14 @@ class MockCameraJSONReader():
         self.imageCounter = 0
         self.CAMERADELAY = 0.2
 
+    #Filename is relative to the MockFramework directory.
     def importCameraData(self, filename):
-        try:
-            with open(filename) as file:
-                self.cameraData = json.load(file)
-        except:
-            print("Error loading JSON file: " + str(filename))
-            print("Proceeding without camera data")
+        #try:
+        with open(os.path.join(os.path.dirname(os.path.realpath(__file__)),filename)) as file:
+            self.cameraData = json.load(file)
+        #except:
+        #    print("Error loading JSON file: " + str(filename))
+        #    print("Proceeding without camera data")
 
     def see(self):
         self.imageCounter += 1

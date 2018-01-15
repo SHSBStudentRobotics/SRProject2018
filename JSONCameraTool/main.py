@@ -9,9 +9,11 @@ def main():
     try:
         while True:
             markers = r.camera.see()
-            imageList.append(markers)
+            imageList.append(list(map(lambda x: x.__dict__, markers)))
 
-            json.dump(imageList, fileReader)
+            print(imageList)
+
+            fileReader.write(json.dumps(imageList))
         
     finally:
         fileReader.close()
