@@ -13,6 +13,7 @@ def main():
 
             print(imageList)
 
+            fileReader.truncate(0)
             fileReader.write(json.dumps(imageList))
         
     finally:

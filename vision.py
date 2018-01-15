@@ -9,23 +9,26 @@ import math
 #  the marker is perpendicular to the line of sight of the camera.
 def getOrientation(marker):
 
-    print(type(marker.pixel_corners()[0]))
+    print(type(marker.pixel_corners[0]))
 
-    markerWidth = 0.25 if marker.id() <= 43 else 0.1
+    markerWidth = 0.25 if marker.id <= 43 else 0.1
 
 
     pixelCorners = [[0,0],[0,0]] #[0,0] is top left, [1,0] is top right, [0,1] is bottom left, [1,1] is bottom right
-    pixelCorners[0][0] = list(filter(lambda x: x.x < marker.x and x.y > marker.y, marker.pixel_corners()))[0]
-    pixelCorners[1][0] = list(filter(lambda x: x.x > marker.x and x.y > marker.y, marker.pixel_corners()))[0]
-    pixelCorners[0][1] = list(filter(lambda x: x.x < marker.x and x.y < marker.y, marker.pixel_corners()))[0]
-    pixelCorners[1][1] = list(filter(lambda x: x.x > marker.x and x.y < marker.y, marker.pixel_corners()))[0]
+    pixelCorners[0][0] = list(filter(lambda x: x[0] < marker.pixel_centre[0] and x[1] > marker.pixel_centre[1], marker.pixel_corners))[0]
+    pixelCorners[1][0] = list(filter(lambda x: x[0] > marker.pixel_centre[0] and x[1] > marker.pixel_centre[1], marker.pixel_corners))[0]
+    pixelCorners[0][1] = list(filter(lambda x: x[0] < marker.pixel_centre[0] and x[1] < marker.pixel_centre[1], marker.pixel_corners))[0]
+    pixelCorners[1][1] = list(filter(lambda x: x[0] > marker.pixel_centre[0] and x[1] < marker.pixel_centre[1], marker.pixel_corners))[0]
 
     #The average x camera coordinates of the corners of the marker. Allows use to approximate the marker as a line below.
-    averageXLeft = (pixelCorners[0][0].x + pixelCorners[0][1].x)/2
-    averageXRight = (pixelCorners[1][0].x + pixelCorners[1][1].x)/2
+    averageXLeft = (pixelCorners[0][0][0] + pixelCorners[0][1][0])/2
+    averageXRight = (pixelCorners[1][0][0] + pixelCorners[1][1][0])/2
+
+    cartZ = marker.polar.distance_meters * math.cos(marker.polar.rot_x_rad)
 
     #Calculates the focal length (in terms of whatever units are values are in)
-    focalLength = marker.cartesian.z  * marker.pixel_centre.x / marker.cartesian.x
+    focalLength = marker.cartesian.z  * marker.pixel_centre.x / marker.polar.x
+
 
     cosTheta = (1 / (markerWidth * focalLength)) * (averageXRight * (marker.cartesian.z + markerWidth/2) - averageXLeft * (marker.cartesian.z - markerWidth/2))
 
