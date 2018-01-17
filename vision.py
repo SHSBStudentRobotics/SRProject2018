@@ -1,4 +1,3 @@
-from robot import *
 import math
 
 #Internally , all angles are in degrees and all are distances in meters
@@ -8,8 +7,6 @@ import math
 #  increases the value of rot_y, while turning it anticlockwise decreases it. A value of 0 means that
 #  the marker is perpendicular to the line of sight of the camera.
 def getOrientation(marker):
-
-    print(type(marker.pixel_corners[0]))
 
     markerWidth = 0.25 if marker.id <= 43 else 0.1
 
@@ -24,15 +21,15 @@ def getOrientation(marker):
     averageXLeft = (pixelCorners[0][0][0] + pixelCorners[0][1][0])/2
     averageXRight = (pixelCorners[1][0][0] + pixelCorners[1][1][0])/2
 
-    cartZ = marker.polar.distance_meters * math.cos(marker.polar.rot_x_rad)
+    cartZ = marker._raw_data["cartesian"][0]
+    cartX = marker._raw_data["cartesian"][1]
+
+    cartX = 0.01 if cartX == 0 else cartX
 
     #Calculates the focal length (in terms of whatever units are values are in)
-    focalLength = marker.cartesian.z  * marker.pixel_centre.x / marker.polar.x
+    focalLength = cartZ * marker.pixel_centre[0] / cartX
 
-
-    cosTheta = (1 / (markerWidth * focalLength)) * (averageXRight * (marker.cartesian.z + markerWidth/2) - averageXLeft * (marker.cartesian.z - markerWidth/2))
-
-    print(cosTheta)
+    cosTheta = (1 / (markerWidth * focalLength)) * (averageXRight * (cartZ + markerWidth/2) - averageXLeft * (cartZ- markerWidth/2))
 
     return degrees(math.acos(cosTheta))
 
@@ -41,13 +38,13 @@ def radians(angle):
     return angle * math.pi / 180
 
 def debugPrintMarker(marker):
-    print("Marker: " + marker.id())
-    print("Distance: " + marker.polar.distance_meters())
-    print("Rot X: " + marker.polar.rot_x_deg ())
-    print("Rot Y: " + marker.polar.rot_y_deg ())
-    print("X: " + marker.cartesian.x())
-    print("Y: " + marker.cartesian.y())
-    print("Z: " + marker.cartesian.z())
+    print("Marker: " + str(marker.id))
+    print("Distance: " + str(marker.polar.distance_metres))
+    print("Rot X: " + str(marker.polar.rot_x_deg ))
+    print("Rot Y: " + str(marker.polar.rot_y_deg ))
+    #print("X: " + marker.cartesian.x())
+    #print("Y: " + marker.cartesian.y())
+    #print("Z: " + marker.cartesian.z())
     print()
 
 
@@ -61,81 +58,31 @@ def getGlobalPos(marker):
     # This converts the marker into an entity with absolute x, y, and rotation from north
     ENTITY = markerToEntity(marker)
     # This is the angle from north that the robot is from the marker
-    ANGLE = ENTITY.angle - marker.orientation.rot_y
+    ANGLE = ENTITY.angle - getOrientation(marker)
     # This converts that angle from north into the robots position relative
     # to the marker and adds that to the markers position
-    X = ENTITY.x + marker.centre.polar.length*100 * math.sin(radians(ANGLE))
+    X = ENTITY.x + marker.polar.distance_metres*100 * math.sin(radians(ANGLE))
     print(math.sin(radians(ANGLE)))
     print(ANGLE)
-    Y = ENTITY.y + marker.centre.polar.length*100 * math.cos(radians(ANGLE))
+    Y = ENTITY.y + marker.polar.distance_metres*100 * math.cos(radians(ANGLE))
     ROBOT_ANGLE = ANGLE-180
     print("ROBOT X : "+str(X))
     print("ROBOT Y : "+str(Y))
     return Entity(X, Y, ROBOT_ANGLE)
 
 def getAngleFromNorth(x, y):
-    print(x)
-    print(y)
     POSY = float(math.fabs(y))
     POSX = float(math.fabs(x))
     if x > 0 and y > 0:
-        print(0)
-        ANGLE_ANTI_FROM_EAST = degrees(math.atan(POSY / POSX))
+        ANGLE_ANTI_FROM_EAST = -degrees(math.atan(POSY / POSX))
     if x < 0 and y > 0:
-        print(1)
-        ANGLE_ANTI_FROM_EAST = 90 + degrees(math.atan(POSY / POSX))
+        ANGLE_ANTI_FROM_EAST = degrees(math.atan(POSY / POSX))
     if x < 0 and y < 0:
-        print(2)
-        ANGLE_ANTI_FROM_EAST = 180 + degrees(math.atan(POSY / POSX))
+        ANGLE_ANTI_FROM_EAST = 90 + degrees(math.atan(POSY / POSX))
     if x > 0 and y < 0:
-        print(3)
-        ANGLE_ANTI_FROM_EAST = 270 + degrees(math.atan(POSY / POSX))
+        ANGLE_ANTI_FROM_EAST =  -90 - degrees(math.atan(POSY / POSX))
     
-    print(ANGLE_ANTI_FROM_EAST)
-    print(-ANGLE_ANTI_FROM_EAST - 270)
-    return -ANGLE_ANTI_FROM_EAST - 270
-
-def getRobotEntity(markers):
-    POSITIONS = map(getGlobalPos, markers)
-    # The mean of all of the x, y and angles
-    X = sum(map(lambda x: x.x, POSITIONS))/len(POSITIONS)
-    Y = sum(map(lambda x: x.y, POSITIONS))/len(POSITIONS)
-    ANGLE = sum(map(lambda x: x.angle, POSITIONS))/len(POSITIONS)
-    return Entity(X, Y, ANGLE)
-
-def markerToEntity(marker):
-    ARENA_ENTITIES = [
-        Entity(0, 100, 90),
-        Entity(0, 200, 90),
-        Entity(0, 300, 90),
-        Entity(0, 400, 90),
-        Entity(0, 500, 90),
-        Entity(0, 600, 90),
-        Entity(0, 700, 90),
-        Entity(100, 800, 180),
-        Entity(200, 800, 180),
-        Entity(300, 800, 180),
-        Entity(400, 800, 180),
-        Entity(500, 800, 180),
-        Entity(600, 800, 180),
-        Entity(700, 800, 180),
-        Entity(800, 700, 270),
-        Entity(800, 600, 270),
-        Entity(800, 500, 270),
-        Entity(800, 400, 270),
-        Entity(800, 300, 270),
-        Entity(800, 200, 270),
-        Entity(800, 100, 270),
-        Entity(700, 0, 0),
-        Entity(600, 0, 0),
-        Entity(500, 0, 0),
-        Entity(400, 0, 0),
-        Entity(300, 0, 0),
-        Entity(200, 0, 0),
-        Entity(100, 0, 0),
-    ]
-    # Return the entity that corresponds to which arena marker it is
-    return ARENA_ENTITIES[marker.info.code]
+    return ANGLE_ANTI_FROM_EAST
 
 class Entity:
     def __init__(self, x, y, angle):
@@ -144,3 +91,130 @@ class Entity:
         self.angle = angle
 
 
+class Mapping:
+    def __init__(self, robot):
+        self.robot = robot
+        self.markerPos = [
+            Point(100, 0),
+            Point(200, 0),
+            Point(300, 0),
+            Point(400, 0),
+            Point(500, 0),
+            Point(600, 0),
+            Point(700, 0),
+            Point(800, 100),
+            Point(800, 200),
+            Point(800, 300),
+            Point(800, 400),
+            Point(800, 500),
+            Point(800, 600),
+            Point(800, 700),
+            Point(700, 800),
+            Point(600, 800),
+            Point(500, 800),
+            Point(400, 800),
+            Point(300, 800),
+            Point(200, 800),
+            Point(100, 800),
+            Point(0, 700),
+            Point(0, 600),
+            Point(0, 500),
+            Point(0, 400),
+            Point(0, 300),
+            Point(0, 200),
+            Point(0, 100)
+        ]
+        if self.robot.zone == 0:
+            self.base = Point(0,0)
+        elif self.robot.zone == 1:
+            self.base = Point(800,0)
+        elif self.robot.zone == 2:
+            self.base = Point(800,800)
+        elif self.robot.zone == 3:
+            self.base = Point(0,800)
+        self.robotPos = Point(self.base.x,self.base.y)
+        self.robotAngle = 0
+
+
+    def triangulate(self, markers):
+        if len(markers) < 2:
+            print("Failed to Triangulate due to lack of points")
+            return
+
+        x1 = self.markerPos[markers[0].id].x
+        y1 = self.markerPos[markers[0].id].y
+        d1 = markers[0].polar.distance_metres * 100
+        x2 = self.markerPos[markers[1].info.code].x
+        y2 = self.markerPos[markers[1].info.code].y
+        d2 = markers[1].polar.distance_metres * 100
+
+        if y1 == y2:
+            y2 += 0.001
+        try:
+            a = -1*(x1-x2)/(y1-y2)
+            b = ((d1**2-d2**2)-(x1**2-x2**2)-(y1**2-y2**2))/(-2*(y1-y2))
+        except:
+            print("Divide By 0 Error")
+            return
+        c = 1+a**2
+        d = -2*x1 + 2*a*b - 2*a*y1
+        e = x1**2 + b**2 - 2*b*y1 + y1**2 - d1**2
+        try:
+            x = (-1*d+math.sqrt(d**2-4*c*e))/(2*c)
+            y = a*x+b
+            otherx = (-1*d-math.sqrt(d**2-4*c*e))/(2*c)
+            othery = a*otherx+b
+        except:
+            print("Triangulation failed , discrimant is negative")
+            return
+
+        if x >= 0 and x <= 800 and y >= 0 and y <= 800: #If First solution in bounds
+            if otherx >= 0 and otherx <= 800 and othery >= 0 and othery <= 800: #If second solution in bounds
+                dist1 = math.sqrt((x-self.robotPos.x)**2 + (y-self.robotPos.y)**2)
+                dist2 = math.sqrt((otherx-self.robotPos.x)**2 + (othery-self.robotPos.y)**2)
+                if dist2 < dist1: #Pick solution closest to last coordinate
+                    x = otherx
+                    y = othery
+        else:
+            if otherx >= 0 and otherx <= 800 and othery >= 0 and othery <= 800: #If only second solution in bounds
+                x = otherx
+                y = othery
+            else: #No solutions
+                print("Triangulation failed , both solutions out of bounds")
+                return
+
+        c = y
+        a = math.sqrt((x-x1)**2 + y1**2)
+        b = math.sqrt((x-x1)**2 +(y-y1)**2)
+        if x1 > x:
+            angle = degree(math.acos((b**2+c**2-a**2)/(2*b*c))) - markers[0].rot_y
+        else:
+            angle = -degree(math.acos((b**2+c**2-a**2)/(2*b*c))) - markers[0].rot_y + 360
+        if angle > 360:
+            angle -= 360
+
+        self.robotAngle = angle
+        self.robotPos.update(x, y)
+        self.triangluationTime = time.time()
+
+    def angleToPoint(self, point):
+        return getAngleFromNorth(self.robotPos.x - point.x, self.robotPos.y - point.y)
+    
+    def distanceToPoint(self, point):
+        return math.sqrt((point.x - self.robotPos.x)**2 + (point.y - self.robotPos.y)**2)
+
+def clampAngle(angle):
+    while angle > 180:
+        angle -= 360
+    while angle < -180:
+        angle += 360
+    return angle
+
+class Point:
+    def __init__(self, x = 0, y= 0):
+        self.x = x
+        self.y = y
+    
+    def update(self, x , y):
+        self.x = x
+        self.y = y
