@@ -198,10 +198,16 @@ class Mapping:
         self.triangluationTime = time.time()
 
     def angleToPoint(self, point):
-        return getAngleFromNorth(self.robotPos.x - point.x, self.robotPos.y - point.y)
+        return angleBetweenPoints(self.robotPos, point)
     
     def distanceToPoint(self, point):
-        return math.sqrt((point.x - self.robotPos.x)**2 + (point.y - self.robotPos.y)**2)
+        distanceBetweenPoints(point, self.robotPos )
+
+def angleBetweenPoints(point, point2):
+    return getAngleFromNorth(point.x - point2.x, point.y - point2.y)
+
+def distanceBetweenPoints(point , point2):
+    return math.sqrt((point.x - point2.x)**2 + (point.y - point2.y)**2)
 
 def clampAngle(angle):
     while angle > 180:
