@@ -30,5 +30,26 @@ class TestVision(unittest.TestCase):
 
         self.assertEqual(map.distanceToPoint(Point(700,800)),500)
 
+    def test_Triangulate(self):
+        marker1 = Marker({"id": 0, "polar": [
+            0,
+          radians(-30),
+          223
+        ],})
+        marker2 = Marker({"id": 2, "polar": [
+         0,
+         radians(30),
+          223
+        ],})
+        r = MockRobot()
+        mapObj = Mapping(r)
+        mapObj.triangulate([marker1, marker2])
+        
+        self.assertAlmostEqual(mapObj.robotPos.x, 200,places=-1)
+        self.assertAlmostEqual(mapObj.robotPos.y, 200,places=-1)
+        self.assertAlmostEqual(mapObj.robotAngle, 0,places=-1)
+
+
+
 if __name__ == '__main__':
     unittest.main()

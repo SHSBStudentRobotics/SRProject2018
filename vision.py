@@ -1,4 +1,4 @@
-import math
+import math, time
 
 #Internally , all angles are in degrees and all are distances in meters
 
@@ -143,10 +143,10 @@ class Mapping:
 
         x1 = self.markerPos[markers[0].id].x
         y1 = self.markerPos[markers[0].id].y
-        d1 = markers[0].polar.distance_metres * 100
-        x2 = self.markerPos[markers[1].info.code].x
-        y2 = self.markerPos[markers[1].info.code].y
-        d2 = markers[1].polar.distance_metres * 100
+        d1 = markers[0].polar.distance_metres
+        x2 = self.markerPos[markers[1].id].x
+        y2 = self.markerPos[markers[1].id].y
+        d2 = markers[1].polar.distance_metres
 
         if y1 == y2:
             y2 += 0.001
@@ -187,9 +187,9 @@ class Mapping:
         a = math.sqrt((x-x1)**2 + y1**2)
         b = math.sqrt((x-x1)**2 +(y-y1)**2)
         if x1 > x:
-            angle = degree(math.acos((b**2+c**2-a**2)/(2*b*c))) - markers[0].rot_y
+            angle = degrees(math.acos((b**2+c**2-a**2)/(2*b*c))) - markers[0].polar.rot_y_deg
         else:
-            angle = -degree(math.acos((b**2+c**2-a**2)/(2*b*c))) - markers[0].rot_y + 360
+            angle = -degrees(math.acos((b**2+c**2-a**2)/(2*b*c))) - markers[0].polar.rot_y_deg + 360
         if angle > 360:
             angle -= 360
 
@@ -201,7 +201,7 @@ class Mapping:
         return angleBetweenPoints(self.robotPos, point)
     
     def distanceToPoint(self, point):
-        distanceBetweenPoints(point, self.robotPos )
+        return distanceBetweenPoints(point, self.robotPos )
 
 def angleBetweenPoints(point, point2):
     return getAngleFromNorth(point.x - point2.x, point.y - point2.y)
