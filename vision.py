@@ -139,7 +139,7 @@ class Mapping:
     def triangulate(self, markers):
         if len(markers) < 2:
             print("Failed to Triangulate due to lack of points")
-            return
+            return 0
 
         x1 = self.markerPos[markers[0].id].x
         y1 = self.markerPos[markers[0].id].y
@@ -155,7 +155,7 @@ class Mapping:
             b = ((d1**2-d2**2)-(x1**2-x2**2)-(y1**2-y2**2))/(-2*(y1-y2))
         except:
             print("Divide By 0 Error")
-            return
+            return 0
         c = 1+a**2
         d = -2*x1 + 2*a*b - 2*a*y1
         e = x1**2 + b**2 - 2*b*y1 + y1**2 - d1**2
@@ -166,7 +166,7 @@ class Mapping:
             othery = a*otherx+b
         except:
             print("Triangulation failed , discrimant is negative")
-            return
+            return 0
 
         if x >= 0 and x <= 800 and y >= 0 and y <= 800: #If First solution in bounds
             if otherx >= 0 and otherx <= 800 and othery >= 0 and othery <= 800: #If second solution in bounds
@@ -181,7 +181,7 @@ class Mapping:
                 y = othery
             else: #No solutions
                 print("Triangulation failed , both solutions out of bounds")
-                return
+                return 0
 
         c = y
         a = math.sqrt((x-x1)**2 + y1**2)
@@ -196,6 +196,7 @@ class Mapping:
         self.robotAngle = angle
         self.robotPos.update(x, y)
         self.triangluationTime = time.time()
+        return 1
 
     def angleToPoint(self, point):
         return angleBetweenPoints(self.robotPos, point)

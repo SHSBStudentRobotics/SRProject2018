@@ -4,6 +4,10 @@ class Action:
         self.angle = clampAngle(angle)
         self.dist = dist
 
+    def changeType(self,newType):
+        self.type = newType
+        return self
+
 def clampAngle(angle):
     if angle > 180:
         return clampAngle(angle-360)
