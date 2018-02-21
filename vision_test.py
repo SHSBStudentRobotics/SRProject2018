@@ -49,7 +49,18 @@ class TestVision(unittest.TestCase):
         self.assertAlmostEqual(mapObj.robotPos.y, 200,places=-1)
         self.assertAlmostEqual(mapObj.robotAngle, 0,places=-1)
 
+    def test_isInHome(self):
+        r = MockRobot()
+        map = Mapping(r)
 
+        map.robotPos.update(245,245)
+        self.assertTrue(map.isInScoringZone())
+
+        map.robotPos.update(400,200)
+        self.assertFalse(map.isInScoringZone())
+
+        map.robotPos.update(200,400)
+        self.assertFalse(map.isInScoringZone())
 
 if __name__ == '__main__':
     unittest.main()

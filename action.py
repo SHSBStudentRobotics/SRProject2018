@@ -1,6 +1,8 @@
+#Type is either "move", "stop" or "turn".
+
 class Action:
-    def __init__(self,type,angle,dist = 0):
-        self.type = type
+    def __init__(self,newType,angle,dist = 0):
+        self.type = newType
         self.angle = clampAngle(angle)
         self.dist = dist
 

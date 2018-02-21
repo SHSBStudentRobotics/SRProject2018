@@ -124,18 +124,23 @@ class Mapping:
             Point(0, 200),
             Point(0, 100)
         ]
+        #Base is the starting area, scoring is the center of scoring zone.
         if self.robot.zone == 0:
             self.base = Point(0,0)
+            self.scoringZone = Point(150,150)
         elif self.robot.zone == 1:
             self.base = Point(800,0)
+            self.scoringZone = Point(650,150)
         elif self.robot.zone == 2:
             self.base = Point(800,800)
+            self.scoringZone = Point(650,650)
         elif self.robot.zone == 3:
             self.base = Point(0,800)
+            self.scoringZone = Point(150,650)
         self.robotPos = Point(self.base.x,self.base.y)
         self.robotAngle = 0
 
-
+    #Returns 1 for success , 0 for failure.
     def triangulate(self, markers):
         if len(markers) < 2:
             print("Failed to Triangulate due to lack of points")
@@ -203,6 +208,23 @@ class Mapping:
     
     def distanceToPoint(self, point):
         return distanceBetweenPoints(point, self.robotPos )
+
+    def isInScoringZone(self):
+        BORDER = 50 #How far the robot must be into the scoring zone
+        
+        #Calculates the edges of the box that the robot must be in
+        lowerX = [100,400,400,100][self.robot.zone] + BORDER
+        upperX = lowerX + 300 - BORDER * 2
+        lowerY = [100,100,400,400][self.robot.zone] + BORDER
+        upperY = lowerY + 300 - BORDER * 2
+
+        return self.robotPos.x > lowerX and self.robotPos.x < upperX and self.robotPos.y > lowerY and self.robotPos.y < upperY
+
+    def angleToScoringZone(self):
+        return self.angleToPoint(self.scoringZone)
+
+    def distanceToScoringZone(self):
+        return self.distanceToPoint(self.scoringZone)     
 
 def angleBetweenPoints(point, point2):
     return getAngleFromNorth(point.x - point2.x, point.y - point2.y)
