@@ -1,16 +1,12 @@
-from robot import *
-from vision import *
-import time
+import decision, hardware, time
+from robot import Robot
 
-def main():
-    robot = Robot()
+robot = Robot()
+decider = decision.Decider()
 
-    while True:
-        try:
-            markers = robot.camera.see()
-            for each in markers:
-                debugPrintMarker(each)
-                getOrientation(each)
-        except Exception as e:
-            print("Error")
-            print(e)
+
+startTime = time.time()
+
+while time.time() - StartTime < 150:
+    action = decider.decide(robot, startTime)
+    hardware.move(robot, action, len(decider.cubes))
