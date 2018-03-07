@@ -44,23 +44,23 @@ def moveToPoint(angle, distance, objects):
     collisionObjects = sorted(list(filter(lambda x: WillCollide(x,angle,distance), objects)), key = lambda x: x.distance_metres)
     
 
-    if len(collisionObjects) == 0 return Action("move", angle, distance)
+    if len(collisionObjects) == 0:
+        return Action("move", angle, distance)
 
     #Currently only considers the closest object.
-
     #Calculates the angle to maintain a 0.5m seperation
-    requiredAngle = math.degrees(math.atan(math.TARGET_SEPERATION / collisionObjects.distance_metres))
-
+    requiredAngle = math.degrees(math.atan(TARGET_SEPERATION / collisionObjects[0].distance_metres))
     movementAngle = 0
 
+
     #If the object in question is on the left.
-    if collisionObjects.polar.rot_y_degrees < 0:
-        movementAngle = collisionObjects.polar.rot_y_degrees + requiredAngle
+    if collisionObjects[0].polar.rot_y_deg < 0:
+        movementAngle = collisionObjects[0].polar.rot_y_deg + requiredAngle
     else:
-        movementAngle = collisionObjects.polar.rot_y_degrees - requiredAngle
+        movementAngle = collisionObjects[0].polar.rot_y_deg - requiredAngle
 
     #Will turn on spot if distance less than 1.5 metres
-    if collisionObjects.distance_metres < 1.5:
+    if collisionObjects[0].distance_metres < 1.5:
         return Action("turn", movementAngle)
 
     else:
