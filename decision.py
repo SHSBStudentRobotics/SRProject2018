@@ -1,6 +1,7 @@
 from action import *
 import time
 from vision import *
+from MoveTowardsPoint import *
 
 #A list of all token id's belonging to robot 0 , 1 ,2 and 3.
 TOKEN_LIST_BY_TEAM = [set(range(44, 49)), set(range(49, 54)), set(range(54, 59)), set(range(59, 64))]
@@ -25,17 +26,18 @@ class Decider:
                                             #If this occurs multiple times in a row ,some solution can be found.
 
         #Used in the search/pickup logic when the cube leaves the camera vision.
-        self.targetDistance = 99999
-        self.targetCube = 999
+        self.targetDistance = -1
+        self.targetCube = -1
 
     #returns main action class to be executed by hardware.
     def decide(self):
         markers = self.robot.camera.see()
 
         #The markers we can pick up, sorted by distance.
-        OWN_MARKERS = sorted(list(filter(lambda x: x in TOKEN_LIST_BY_TEAM[self.robot.zone], markers)) , key = lambda x: x.spherical.distance_metres)
+        OWN_MARKERS = sorted(list(filter(lambda x: x.id in TOKEN_LIST_BY_TEAM[self.robot.zone], markers)) , key = lambda x: x.spherical.distance_metres)
 
         WALL_MARKERS = list(filter(lambda x: x < 28,markers ))
+        OBSTACLE_MARKERS = list(filter(lambda x: x >= 28,markers ))
 
         #Removes cubes we can see from the list of cubes it is carrying
         OWN_MARKERS_IDS = list(map(lambda x: x.id, OWN_MARKERS))
@@ -53,16 +55,8 @@ class Decider:
 
         if self.mode == RETURNING:
             if not HAS_TRIANGULATION:
-                self.numberOfFailedIterations += 1
-                if self.numberOfFailedIterations > MAX_FAILED_ITERATIONS:
-                    #TODO: ultrasound sensor for backing up if against a wall. 
-
-                    #Turns clockwise in a stop-start motion , hoping to find markers.
-                    if self.numberOfFailedIterations % 2 == 0:
-                        return Action("turn",0,0)
-                    else:
-                        return Action("stop",180,0)
-
+                self.cameraFailure()
+            
             if map.isInScoringZone():
                 #TODO: drop cubes.
 
@@ -72,13 +66,39 @@ class Decider:
             distanceToHome = map.distanceToScoringZone()
             return actionMoveOrTurn(Action("move",angleToHome,distanceToHome))
 
-       if self.mode == SEARCHING:
-           if len(OWN_MARKERS) > 0:
+        if self.mode == SEARCHING:
+            if self.targetDistance < 1 and TARGET.id not in OWN_MARKERS_IDS and self.targetCube != -1:
+                self.numberOfFailedIterations += 1
+                if self.numberOfFailedIterations > 5:
+                    return Action("move", 0 ,5)
+                else:
+                    self.numberOfFailedIterations = 0
+                    self.cubes += [self.targetCube]
+                    self.targetCube = -1
+                    return Action("stop")
+
+            if len(OWN_MARKERS) > 0:
+                self.numberOfFailedIterations = 0
+
                 TARGET = OWN_MARKERS[0]
                 self.targetDistance = TARGET.spherical.distance_metres
                 self.targetCube = TARGET.id
 
-                return actionMoveOrTurn(Action("move",TARGET.spherical.rot_y_degrees ,targetDistance))
+                return actionMoveOrTurn(moveToMarker(TARGET, OBSTACLE_MARKERS.remove(TAGET)))
+            else:     
+                return cameraFailure()
+
+    def cameraFailure(self):
+        self.numberOfFailedIterations += 1
+
+        if self.numberOfFailedIterations > MAX_FAILED_ITERATIONS:
+            #TODO: ultrasound sensor for backing up if against a wall. 
+                
+            #Turns clockwise in a stop-start motion , hoping to find markers.
+            if self.numberOfFailedIterations % 2 == 0:
+                return Action("turn",0,0)
+            else:
+                return Action("stop",180,0)
 
             
 #Changes an action to move on the spot if larger than a maximun angle.
