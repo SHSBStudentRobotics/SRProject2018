@@ -1,7 +1,7 @@
 from action import *
 import time
 from vision import *
-from MoveTowardsPoint import *
+from collision import *
 
 #A list of all token id's belonging to robot 0 , 1 ,2 and 3.
 TOKEN_LIST_BY_TEAM = [set(range(44, 49)), set(range(49, 54)), set(range(54, 59)), set(range(59, 64))]
@@ -20,7 +20,7 @@ class Decider:
         self.robot = robot
         self.mode = SEARCHING
         self.cubes = [] # A list of cubes (ID's) that the robot believes it has picked up and is carrying.
-        self.map = Mapping(robot)
+        self.mapObj = Mapping(robot)
         self.startTime = startTime
         self.numberOfFailedIterations = 0 #This is a counter that iterates upwards each time an operation fail's due to insufficient camera data.
                                             #If this occurs multiple times in a row ,some solution can be found.
@@ -36,8 +36,8 @@ class Decider:
         #The markers we can pick up, sorted by distance.
         OWN_MARKERS = sorted(list(filter(lambda x: x.id in TOKEN_LIST_BY_TEAM[self.robot.zone], markers)) , key = lambda x: x.spherical.distance_metres)
 
-        WALL_MARKERS = list(filter(lambda x: x < 28,markers ))
-        OBSTACLE_MARKERS = list(filter(lambda x: x >= 28,markers ))
+        WALL_MARKERS = list(filter(lambda x: x.id < 28,markers ))
+        OBSTACLE_MARKERS = list(filter(lambda x: x.id >= 28,markers ))
 
         #Removes cubes we can see from the list of cubes it is carrying
         OWN_MARKERS_IDS = list(map(lambda x: x.id, OWN_MARKERS))
@@ -45,7 +45,7 @@ class Decider:
 
         TIME_LEFT = 150 - (time.time() - self.startTime)
 
-        HAS_TRIANGULATION = self.map.triangulate(WALL_MARKERS) == 1
+        HAS_TRIANGULATION = self.mapObj.triangulate(WALL_MARKERS) == 1
 
         #Changes to return mode if beyond MAX_CAPACITY or less that 30 seconds left and their is a cube to return.
         if len(self.cubes) >= MAX_CAPACITY:
@@ -53,21 +53,23 @@ class Decider:
         if TIME_LEFT < 30 and len(self.cubes) >= 1:
             self.mode = RETURNING
 
+        print("MODE: ", self.mode)
+
         if self.mode == RETURNING:
             if not HAS_TRIANGULATION:
                 self.cameraFailure()
             
-            if map.isInScoringZone():
+            if self.mapObj.isInScoringZone():
                 #TODO: drop cubes.
 
                 self.mode = SEARCHING
 
-            angleToHome = map.angleToScoringZone()
-            distanceToHome = map.distanceToScoringZone()
+            angleToHome = self.mapObj.angleToScoringZone()
+            distanceToHome = self.mapObj.distanceToScoringZone()
             return actionMoveOrTurn(Action("move",angleToHome,distanceToHome))
 
         if self.mode == SEARCHING:
-            if self.targetDistance < 1 and TARGET.id not in OWN_MARKERS_IDS and self.targetCube != -1:
+            if self.targetDistance < 1 and self.targetCube not in OWN_MARKERS_IDS and self.targetCube != -1:
                 self.numberOfFailedIterations += 1
                 if self.numberOfFailedIterations > 5:
                     return Action("move", 0 ,5)
@@ -75,7 +77,7 @@ class Decider:
                     self.numberOfFailedIterations = 0
                     self.cubes += [self.targetCube]
                     self.targetCube = -1
-                    return Action("stop")
+                    return Action("stop", 0)
 
             if len(OWN_MARKERS) > 0:
                 self.numberOfFailedIterations = 0
@@ -84,21 +86,20 @@ class Decider:
                 self.targetDistance = TARGET.spherical.distance_metres
                 self.targetCube = TARGET.id
 
-                return actionMoveOrTurn(moveToMarker(TARGET, OBSTACLE_MARKERS.remove(TAGET)))
+                OBSTACLE_MARKERS_WO_TARGET = list(filter(lambda x: x.id != TARGET.id, OBSTACLE_MARKERS))
+
+                return actionMoveOrTurn(moveToMarker(TARGET, OBSTACLE_MARKERS_WO_TARGET))
             else:     
-                return cameraFailure()
+                return self.cameraFailure()
 
     def cameraFailure(self):
         self.numberOfFailedIterations += 1
-
-        if self.numberOfFailedIterations > MAX_FAILED_ITERATIONS:
-            #TODO: ultrasound sensor for backing up if against a wall. 
                 
-            #Turns clockwise in a stop-start motion , hoping to find markers.
-            if self.numberOfFailedIterations % 2 == 0:
-                return Action("turn",0,0)
-            else:
-                return Action("stop",180,0)
+        #Turns clockwise in a stop-start motion , hoping to find markers.
+        if self.numberOfFailedIterations % 2 == 0:
+            return Action("turn",0,0)
+        else:
+            return Action("stop",180,0)
 
             
 #Changes an action to move on the spot if larger than a maximun angle.

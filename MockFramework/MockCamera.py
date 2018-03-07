@@ -34,6 +34,33 @@ class MockCameraJSONReader():
 
 #Previously code shamelessly stolen from www.github.com/sourcebots/robot-api
 
+class Spherical:
+    def __init__(self,dist,rotx,roty):
+        self._dist = dist
+        self._rotx = rotx
+        self._roty = roty
+
+    @property
+    def distance_metres(self):
+        return self._dist
+
+    @property
+    def rot_x_radians(self):
+        return self._rotx
+
+    @property
+    def rot_x_degrees(self):
+        return math.degrees(self._rotx)
+
+    @property
+    def rot_y_radians(self):
+        return self._roty
+
+    @property
+    def rot_y_degrees(self):
+        return math.degrees(self._roty)
+    
+
 class CartCoord:
     """Represents a cartesian co-ordinate point."""
 
@@ -177,5 +204,9 @@ class Marker:
         """
         raise NotImplementedError("This is not implemented.")
         return CartCoord()
+
+    @property
+    def spherical(self):
+        return Spherical(self.distance_metres, self.polar.rot_x_rad, self.polar.rot_y_rad)
 
 
