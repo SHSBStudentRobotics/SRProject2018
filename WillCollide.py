@@ -15,14 +15,13 @@ def WillCollide(Object, PathAngle, PathDistance):
     PathAngle = math.radians(PathAngle)
     
     hyp = Object.distance_metres #Hypotenuse
-    theta = abs(Object.rot_y_rad - PathAngle) #Angle between self and path in radians]
+    theta = math.fabs(Object.polar.rot_y_rad - PathAngle) #Angle between self and path in radians
 
-    adj = hyp * cos(theta)
+    adj = hyp * math.cos(theta)
     if adj > (PathDistance + OBJECTBUFFER): return False
     
-    opp = hyp * sin(theta)
-
-    if (opp - (OBJECTBUFFER + (SELFWIDTH / 2)) > 0:
+    opp = hyp * math.sin(theta)
+    if (opp - (OBJECTBUFFER + (SELFWIDTH / 2))) > 0:
         return False
 
     else: return True
