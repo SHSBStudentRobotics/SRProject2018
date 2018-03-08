@@ -1,5 +1,5 @@
 from robot import *
-from PowerMotor import *
+from hardware import *
 import time
 
 robot = Robot()
