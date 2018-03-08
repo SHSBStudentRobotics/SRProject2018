@@ -2,98 +2,82 @@ import math
 import time
 from action import *
 
+#global variables for the PID controller.
+prevTime = time.time()
+prevError = 0
+integral = 0
+turnValue = 0 #This value is added to the right hand motor, subtracted from the left hand motor.
+    
+def move(robot,action,tokens, config):
+    #The increase in speed because of the number of cubes.
+    CUBE_SPEED_INCREASE = float(config["Hardware"]["SpeedIncreasePerCube"]) * tokens #Compensate for drag of cube
 
-MOTORRATIO = 1 #Speed of right wheel compared to left one.
-BASESPEED = 40 #Speed of robot.
-TURNSPEED = 1
-MAXDIST = 200 #Distance that can be covered in between one camera update at full power.
-MAXANGLE = 120 #Angle that can be convered between one camera update at full power.
-POWERCHANGEDELAY = 0.2 #Number of seconds to wait between power shifts
-    
-def move(robot,action,tokens):
-    
-    CUBEMULTIPLIER = 1 + 0.5 * tokens #Compensate for drag of cube
-    #Generates leftSpeed and rightSpeed from motor ratio(To go straight)
-    if MOTORRATIO < 1:
-        leftSpeed = BASESPEED
-        rightSpeed = BASESPEED * MOTORRATIO  
-    else:
-        leftSpeed = BASESPEED / MOTORRATIO
-        rightSpeed = BASESPEED ## At this point LeftSpeed / RightSpeed = MOTORRATIO
-    
-    if leftSpeed * CUBEMULTIPLIER < 100 and rightSpeed * CUBEMULTIPLIER < 100:
-        leftSpeed *= CUBEMULTIPLIER
-        rightSpeed *= CUBEMULTIPLIER #Apply CUBEMULTIPLIER if possible
-    elif leftSpeed > rightSpeed:
-        rightSpeed *= 100 / leftSpeed
-        leftSpeed = 100
-    elif rightSpeed > leftSpeed:
-        leftSpeed *= 100 / rightSpeed
-        rightSpeed = 100
+    averageSpeed = CUBE_SPEED_INCREASE + float(config["Hardware"]["BaseSpeed"])
     
     if action.type == "move":
-        if action.dist < MAXDIST * (BASESPEED/100.0): #If distance is too short
-            multiplier = action.dist / (MAXDIST * (BASESPEED/100.0))
-            leftSpeed *= multiplier
-            rightSpeed *= multiplier
-            
-        turn = clamp(float(action.angle)/ float(MAXANGLE),-1,1) #Proportion to turn
-        if turn < 0: #Turn left
-            print("Turn left")
-            ###robot.motors[0].m0.power = leftSpeed * (1 + turn) / TURNSPEED
-            powerMotor(robot, 0, leftSpeed * (1 + turn) / TURNSPEED)
-            ###robot.motors[0].m1.power = rightSpeed
-            powerMotor(robot, 1, rightSpeed)
+        #lowers speed when close to target , rarely used.
+        if action.dist < float(config["Hardware"]["MaxDistForFullPower"]):
+            averageSpeed *= action.dist / float(config["Hardware"]["MaxDistForFullPower"])
 
-                
-            print("left speed: " + str(leftSpeed * (1 + turn) / TURNSPEED))
-            print("right speed: " + str(rightSpeed))
-        elif turn > 0: #Turn right
-            print("Turn right")
-            ###robot.motors[0].m0.power = leftSpeed
-            powerMotor(robot, 0, leftSpeed)
-            ###robot.motors[0].m1.power = rightSpeed * (1 - turn) / TURNSPEED
-            powerMotor(robot, 1, rightSpeed * (1 - turn) / TURNSPEED)
-                
-            print("left speed: " + str(leftSpeed * (1 + turn) / TURNSPEED))
-            print("right speed: " + str(rightSpeed))
-        else:
-            ###robot.motors[0].m0.power = leftSpeed
-            powerMotor(robot, 0, leftSpeed)
+        #Start of PID controller.
+        #calculates deltatime, cant be 0.
+        global prevTime
+        dt = max(0.0000001, time.time() - prevTime)
+        prevTime = time.time()
 
-            
-            ###robot.motors[0].m1.power = rightSpeed
-            powerMotor(robot, 1, rightSpeed)
+        #integral only measured when angle < 5 to avoid integral windup
+        global integral
+        if math.fabs(action.angle) < 5:
+            integral += dt * action.angle
 
+        proportionalTerm = float(config["Hardware"]["ProportionalConstant"]) * action.angle
+        integralTerm = float(config["Hardware"]["IntegralConstant"]) * integral
+        derivativeTerm = float(config["Hardware"]["DerivativeConstant"]) * ((action.angle - prevError) /dt)
+
+        global turnValue
+        turnValue += proportionalTerm + integralTerm + derivativeTerm
+        #End of PID controller.
+
+        #Limits the turn value such that both values can not be out of bounds.
+        if turnValue < 0 and averageSpeed + turnValue < -1:
+            turnValue = -(averageSpeed + 1)
+        elif turnValue > 0 and averageSpeed - turnValue < -1:
+            turnValue = averageSpeed + 1
+
+        setBothMotors(robot,config,min(1,averageSpeed - turnValue), min(1,averageSpeed + turnValue))
                 
     elif action.type == "stop":
-        ###robot.motors[0].m0.power = 0
-        LChange = powerMotor(robot, 0, 0)
-        ###robot.motors[0].m1.power = 0
-        RChange = powerMotor(robot, 1, 0)
-
-        
+        powerMotor(robot, 0, 0)
+        powerMotor(robot, 1, 0)  
         
     elif action.type == "turn":
-        
+        leftSpeed = averageSpeed
+        rightSpeed = averageSpeed
         if action.angle < 0:
             leftSpeed *= -1
         else:
             rightSpeed *= -1
         
-        if action.angle < MAXANGLE:
-            proportion = clamp(float(action.angle)/float(MAXANGLE) , -1 , 1) #Generate speed multiplier
+        if math.fabs(action.angle) < 45:
+            #Not updated to PID system as turning is typically only done before moving
+            #when the angle is too large. Therefore it does not handle movements that need
+            #precision.
+            proportion = clamp(math.fabs(action.angle)/45, -1 , 1) #Generate speed multiplier
             leftSpeed *= proportion
             rightSpeed *= proportion
             
-        ###robot.motors[0].m0.power = leftSpeed
-        powerMotor(robot, 0, leftSpeed)
-        ###robot.motors[0].m1.power = rightSpeed
-        powerMotor(robot, 1, rightSpeed)
-            
-            
+        setBothMotors(robot,config,leftSpeed,rightSpeed)              
         
-            
+def setBothMotors(robot,config,left,right):
+    if config["Hardware"]["InvertLeftMotor"].lower() in ["n","no","0"]:
+        powerMotor(robot, int(config["Hardware"]["LeftMotorNumber"]), left)
+    else:
+        powerMotor(robot, int(config["Hardware"]["LeftMotorNumber"]), -left)
+    
+    if config["Hardware"]["InvertRightMotor"].lower() in ["n","no","0"]:
+        powerMotor(robot, int(config["Hardware"]["RightMotorNumber"]), right)
+    else:
+        powerMotor(robot, int(config["Hardware"]["RightMotorNumber"]), -right)
     
 def clamp(val,minimum,maximum):
     if val < minimum:
