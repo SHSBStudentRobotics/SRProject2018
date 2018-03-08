@@ -1,5 +1,5 @@
 from MockFramework import *
-from PowerMotor import *
+from hardware import *
 import time, unittest
 
 class TestHardware(unittest.TestCase):
