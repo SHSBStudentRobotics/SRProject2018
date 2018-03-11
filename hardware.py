@@ -10,14 +10,14 @@ turnValue = 0 #This value is added to the right hand motor, subtracted from the 
     
 def move(robot,action,tokens, config):
     #The increase in speed because of the number of cubes.
-    CUBE_SPEED_INCREASE = float(config["Hardware"]["SpeedIncreasePerCube"]) * tokens #Compensate for drag of cube
+    CUBE_SPEED_INCREASE = float(config["Movement"]["SpeedIncreasePerCube"]) * tokens #Compensate for drag of cube
 
-    averageSpeed = CUBE_SPEED_INCREASE + float(config["Hardware"]["BaseSpeed"])
+    averageSpeed = CUBE_SPEED_INCREASE + float(config["Movement"]["BaseSpeed"])
     
     if action.type == "move":
         #lowers speed when close to target , rarely used.
-        if action.dist < float(config["Hardware"]["MaxDistForFullPower"]):
-            averageSpeed *= action.dist / float(config["Hardware"]["MaxDistForFullPower"])
+        if action.dist < float(config["Movement"]["MaxDistForFullPower"]):
+            averageSpeed *= action.dist / float(config["Movement"]["MaxDistForFullPower"])
 
         #Start of PID controller.
         #calculates deltatime, cant be 0.
@@ -30,9 +30,9 @@ def move(robot,action,tokens, config):
         if math.fabs(action.angle) < 5:
             integral += dt * action.angle
 
-        proportionalTerm = float(config["Hardware"]["ProportionalConstant"]) * action.angle
-        integralTerm = float(config["Hardware"]["IntegralConstant"]) * integral
-        derivativeTerm = float(config["Hardware"]["DerivativeConstant"]) * ((action.angle - prevError) /dt)
+        proportionalTerm = float(config["Movement"]["ProportionalConstant"]) * action.angle
+        integralTerm = float(config["Movement"]["IntegralConstant"]) * integral
+        derivativeTerm = float(config["Movement"]["DerivativeConstant"]) * ((action.angle - prevError) /dt)
 
         global turnValue
         turnValue += proportionalTerm + integralTerm + derivativeTerm
@@ -47,8 +47,8 @@ def move(robot,action,tokens, config):
         setBothMotors(robot,config,min(1,averageSpeed - turnValue), min(1,averageSpeed + turnValue))
                 
     elif action.type == "stop":
-        powerMotor(robot, 0, 0)
-        powerMotor(robot, 1, 0)  
+        powerMotor(robot, 0, 0, config)
+        powerMotor(robot, 1, 0, config)  
         
     elif action.type == "turn":
         leftSpeed = averageSpeed
@@ -70,14 +70,14 @@ def move(robot,action,tokens, config):
         
 def setBothMotors(robot,config,left,right):
     if config["Hardware"]["InvertLeftMotor"].lower() in ["n","no","0"]:
-        powerMotor(robot, int(config["Hardware"]["LeftMotorNumber"]), left)
+        powerMotor(robot, int(config["Hardware"]["LeftMotorNumber"]), left, config)
     else:
-        powerMotor(robot, int(config["Hardware"]["LeftMotorNumber"]), -left)
+        powerMotor(robot, int(config["Hardware"]["LeftMotorNumber"]), -left, config)
     
     if config["Hardware"]["InvertRightMotor"].lower() in ["n","no","0"]:
-        powerMotor(robot, int(config["Hardware"]["RightMotorNumber"]), right)
+        powerMotor(robot, int(config["Hardware"]["RightMotorNumber"]), right, config)
     else:
-        powerMotor(robot, int(config["Hardware"]["RightMotorNumber"]), -right)
+        powerMotor(robot, int(config["Hardware"]["RightMotorNumber"]), -right, config)
     
 def clamp(val,minimum,maximum):
     if val < minimum:
@@ -87,9 +87,8 @@ def clamp(val,minimum,maximum):
     return val
 
 MotorList = [0,0] # Both motors start at 0
-MAXSAFECHANGE = 0.5 # Adjust as needed
 
-def powerMotor(SInstance, MotorToChange, Value):
+def powerMotor(SInstance, MotorToChange, Value, config):
     # SInstance = Self instance, i.e. The robot instance from the API
     # MotorToChange = The index of the motor being powered
     # Value = The value of the change being done   
@@ -97,9 +96,9 @@ def powerMotor(SInstance, MotorToChange, Value):
     if Value == "coast": Value = 0 #Change to brake
     OldValue = Value
 
-    if abs(Value - MotorList[MotorToChange]) > MAXSAFECHANGE:
-        if Value - MotorList[MotorToChange] >= 0: Value = MotorList[MotorToChange] + MAXSAFECHANGE
-        if Value - MotorList[MotorToChange] < 0: Value = MotorList[MotorToChange] - MAXSAFECHANGE
+    if abs(Value - MotorList[MotorToChange]) > float(config["Hardware"]["CurrentProtectionMaxChange"]):
+        if Value - MotorList[MotorToChange] >= 0: Value = MotorList[MotorToChange] + float(config["Hardware"]["CurrentProtectionMaxChange"])
+        if Value - MotorList[MotorToChange] < 0: Value = MotorList[MotorToChange] - float(config["Hardware"]["CurrentProtectionMaxChange"])
 
     Value = clamp(Value, -1, 1)
 

@@ -2,37 +2,6 @@ import math, time
 
 #Internally , all angles are in degrees and all are distances in meters
 
-
-#  Returns the orientation of a marker in degrees , where Turning a marker clockwise (as viewed from above)
-#  increases the value of rot_y, while turning it anticlockwise decreases it. A value of 0 means that
-#  the marker is perpendicular to the line of sight of the camera.
-def getOrientation(marker):
-
-    markerWidth = 0.25 if marker.id <= 43 else 0.1
-
-
-    pixelCorners = [[0,0],[0,0]] #[0,0] is top left, [1,0] is top right, [0,1] is bottom left, [1,1] is bottom right
-    pixelCorners[0][0] = list(filter(lambda x: x[0] < marker.pixel_centre[0] and x[1] > marker.pixel_centre[1], marker.pixel_corners))[0]
-    pixelCorners[1][0] = list(filter(lambda x: x[0] > marker.pixel_centre[0] and x[1] > marker.pixel_centre[1], marker.pixel_corners))[0]
-    pixelCorners[0][1] = list(filter(lambda x: x[0] < marker.pixel_centre[0] and x[1] < marker.pixel_centre[1], marker.pixel_corners))[0]
-    pixelCorners[1][1] = list(filter(lambda x: x[0] > marker.pixel_centre[0] and x[1] < marker.pixel_centre[1], marker.pixel_corners))[0]
-
-    #The average x camera coordinates of the corners of the marker. Allows use to approximate the marker as a line below.
-    averageXLeft = (pixelCorners[0][0][0] + pixelCorners[0][1][0])/2
-    averageXRight = (pixelCorners[1][0][0] + pixelCorners[1][1][0])/2
-
-    cartZ = marker._raw_data["cartesian"][0]
-    cartX = marker._raw_data["cartesian"][1]
-
-    cartX = 0.01 if cartX == 0 else cartX
-
-    #Calculates the focal length (in terms of whatever units are values are in)
-    focalLength = cartZ * marker.pixel_centre[0] / cartX
-
-    cosTheta = (1 / (markerWidth * focalLength)) * (averageXRight * (cartZ + markerWidth/2) - averageXLeft * (cartZ- markerWidth/2))
-
-    return degrees(math.acos(cosTheta))
-
 #Converts an angle from degrees to radians
 def radians(angle):
     return angle * math.pi / 180
@@ -53,23 +22,6 @@ def degrees(angle):
     return angle * 180 / math.pi
 
 #Some stuff from last year:
-
-def getGlobalPos(marker):
-    # This converts the marker into an entity with absolute x, y, and rotation from north
-    ENTITY = markerToEntity(marker)
-    # This is the angle from north that the robot is from the marker
-    ANGLE = ENTITY.angle - getOrientation(marker)
-    # This converts that angle from north into the robots position relative
-    # to the marker and adds that to the markers position
-    X = ENTITY.x + marker.polar.distance_metres*100 * math.sin(radians(ANGLE))
-    print(math.sin(radians(ANGLE)))
-    print(ANGLE)
-    Y = ENTITY.y + marker.polar.distance_metres*100 * math.cos(radians(ANGLE))
-    ROBOT_ANGLE = ANGLE-180
-    print("ROBOT X : "+str(X))
-    print("ROBOT Y : "+str(Y))
-    return Entity(X, Y, ROBOT_ANGLE)
-
 def getAngleFromNorth(x, y):
     POSY = float(math.fabs(y))
     POSX = float(math.fabs(x))
