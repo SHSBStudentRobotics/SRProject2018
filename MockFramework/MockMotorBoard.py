@@ -14,14 +14,14 @@ class MockMotorBoardPrinter:
         print("m0 Changed to: " + str(value))
         self._m0 = value
 
-    def getM0(self, value):
+    def getM0(self):
         return self._m0
 
     def setM1(self , value):
         print("m1 Changed to: " + str(value))
         self._m1 = value
 
-    def getM1(self, value):
+    def getM1(self):
         return self._m1
 
     m0 = property(getM0,setM0)

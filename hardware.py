@@ -1,5 +1,4 @@
-import math
-import time
+import math, time, logging
 from action import *
 
 #global variables for the PID controller.
@@ -7,17 +6,24 @@ prevTime = time.time()
 prevError = 0
 integral = 0
 turnValue = 0 #This value is added to the right hand motor, subtracted from the left hand motor.
+
+logger = logging.getLogger(__name__)
     
 def move(robot,action,tokens, config):
+    logger.info("Move executed with action: Type: {0} Distance: {1} Angle: {2}".format(action.type, action.dist, action.angle))
+
     #The increase in speed because of the number of cubes.
     CUBE_SPEED_INCREASE = float(config["Movement"]["SpeedIncreasePerCube"]) * tokens #Compensate for drag of cube
 
     averageSpeed = CUBE_SPEED_INCREASE + float(config["Movement"]["BaseSpeed"])
+
+    logger.debug("Move speed: {0} NumberOfCubes: {1} CubeSpeedIncrease: {2}".format(averageSpeed, tokens, CUBE_SPEED_INCREASE))
     
     if action.type == "move":
         #lowers speed when close to target , rarely used.
         if action.dist < float(config["Movement"]["MaxDistForFullPower"]):
             averageSpeed *= action.dist / float(config["Movement"]["MaxDistForFullPower"])
+            logger.debug("Move speed lowered to " + str(averageSpeed))
 
         #Start of PID controller.
         #calculates deltatime, cant be 0.
@@ -44,11 +50,12 @@ def move(robot,action,tokens, config):
         elif turnValue > 0 and averageSpeed - turnValue < -1:
             turnValue = averageSpeed + 1
 
+        logger.debug("PID info: P: {0} I: {1} D: {2} TurnValue: {3} dt: {4}".format(proportionalTerm ,integralTerm ,derivativeTerm , turnValue, dt))
+
         setBothMotors(robot,config,min(1,averageSpeed - turnValue), min(1,averageSpeed + turnValue))
                 
     elif action.type == "stop":
-        powerMotor(robot, 0, 0, config)
-        powerMotor(robot, 1, 0, config)  
+        setBothMotors(robot, config, 0, 0) 
         
     elif action.type == "turn":
         leftSpeed = averageSpeed
@@ -78,7 +85,8 @@ def setBothMotors(robot,config,left,right):
         powerMotor(robot, int(config["Hardware"]["RightMotorNumber"]), right, config)
     else:
         powerMotor(robot, int(config["Hardware"]["RightMotorNumber"]), -right, config)
-    
+    logger.info("Motors set to Left: {0} Right:  {1} M0: {2} M1: {3}".format(left,right,robot.motor_board.m0,robot.motor_board.m1))
+
 def clamp(val,minimum,maximum):
     if val < minimum:
         return minimum
