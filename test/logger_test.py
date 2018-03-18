@@ -9,7 +9,7 @@ class TestLoggers(unittest.TestCase):
         config = getConfigSettings("test/tempConfig.ini")
         setupLoggers(config)
 
-        r = MockRobot()
+        r = MockRobot(motor_board = MockMotorBoard() ,camera = None)
         move(r,Action("move",30,100),0,config)
         os.remove("test/tempConfig.ini")
 

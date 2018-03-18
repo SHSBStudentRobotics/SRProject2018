@@ -1,11 +1,15 @@
-import math
+import math, logging
 from action import *
+
+logger = logging.getLogger(__name__)
 
 def willCollide(Object, PathAngle, PathDistance):
     #Object is object taken from sourcebots API
     #PathAngle is the absolute angle between where the
     #robot is facing and where the robot wants to be in degrees
     #PathDistance is the distance we wish to travel along that line (metres)
+
+    logger.debug("Testing for collision between object {0} at a path with angle {1} and distance {2}.".format(Object.id, PathAngle, PathDistance))
 
     OBJECTBUFFER = 0.25 #Buffer around object to account for errors (metres)
     SELFWIDTH = 0.50 #Width of self, perpendicular to direction of travel (metres)
@@ -17,13 +21,21 @@ def willCollide(Object, PathAngle, PathDistance):
     theta = math.fabs(Object.polar.rot_y_rad - PathAngle) #Angle between self and path in radians
 
     adj = hyp * math.cos(theta)
-    if adj > (PathDistance + OBJECTBUFFER): return False
+
+    logger.debug("hyp: {0} theta: {1} adj: {2}".format(hyp, theta, adj))
+
+    if adj > (PathDistance + OBJECTBUFFER): 
+        logger.debug("Path Distance too short, no collision.")
+        return False
     
     opp = hyp * math.sin(theta)
+    logger.debug("opp: " + str(opp))
     if (opp - (OBJECTBUFFER + (SELFWIDTH / 2))) > 0:
+        logger.debug("opp too large, no collision.")
         return False
 
-    else: return True
+    logger.debug("Collision with object " + str(Object.id))
+    return True
 
 def moveToMarker(marker,objects):
     #Marker must not be in the objects list.

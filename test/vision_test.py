@@ -12,7 +12,7 @@ markers = camera.see()
 
 class TestVision(unittest.TestCase):
     def test_AngleToPoint(self):
-        r = MockRobot()
+        r = MockRobot(motor_board = MockMotorBoard() ,camera = None)
         map = Mapping(r)
         map.robotPos.update(400,400)
         map.robotAngle = 0
@@ -23,7 +23,7 @@ class TestVision(unittest.TestCase):
         self.assertEqual(clampAngle(map.angleToPoint(Point(600,200))), 45)
 
     def test_DistanceToPoint(self):
-        r = MockRobot()
+        r = MockRobot(motor_board = MockMotorBoard() ,camera = None)
         map = Mapping(r)
         map.robotPos.update(400,400)
         map.robotAngle = 0
@@ -50,7 +50,7 @@ class TestVision(unittest.TestCase):
         self.assertAlmostEqual(mapObj.robotAngle, 0,places=-1)
 
     def test_isInHome(self):
-        r = MockRobot()
+        r = MockRobot(motor_board = MockMotorBoard() ,camera = None)
         map = Mapping(r)
 
         map.robotPos.update(245,245)
