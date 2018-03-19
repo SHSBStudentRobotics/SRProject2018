@@ -44,6 +44,8 @@ def moveToMarker(marker,objects):
 def moveToPoint(angle, distance, objects):
     #Distance in metres , angle in degrees.
 
+    logger.info("Checking for collision on path of distance {0} and and angle {1}".format(distance,angle))
+
     if len(objects) == 0:
         return Action("move", angle, distance)
 
@@ -55,12 +57,15 @@ def moveToPoint(angle, distance, objects):
     
 
     if len(collisionObjects) == 0:
+        logger.info("No collision")
         return Action("move", angle, distance)
 
     #Currently only considers the closest object.
     #Calculates the angle to maintain a 0.5m seperation
     requiredAngle = math.degrees(math.atan(TARGET_SEPERATION / collisionObjects[0].distance_metres))
     movementAngle = 0
+
+    logger.debug("Required angle to avoid collision: " + str(requiredAngle))
 
 
     #If the object in question is on the left.
@@ -75,6 +80,3 @@ def moveToPoint(angle, distance, objects):
 
     else:
         return Action("move",movementAngle , distance)
-    
-
-    
