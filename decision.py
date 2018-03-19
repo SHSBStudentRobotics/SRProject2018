@@ -2,6 +2,7 @@ from action import *
 import time, logging
 from vision import *
 from collision import *
+from cameraExporter import *
 
 #A list of all token id's belonging to robot 0 , 1 ,2 and 3.
 TOKEN_LIST_BY_TEAM = [set(range(44, 49)), set(range(49, 54)), set(range(54, 59)), set(range(59, 64))]
@@ -23,6 +24,7 @@ class Decider:
         self.mode = SEARCHING
         self.cubes = [] # A list of cubes (ID's) that the robot believes it has picked up and is carrying.
         self.mapObj = Mapping(robot)
+        self.cameraExporter = jsonCameraExporter() #Used to export the camera data for later testing.
         self.startTime = startTime
         self.numberOfFailedIterations = 0 #This is a counter that iterates upwards each time an operation fail's due to insufficient camera data.
                                             #If this occurs multiple times in a row ,some solution can be found.
@@ -34,6 +36,8 @@ class Decider:
     #returns main action class to be executed by hardware.
     def decide(self):
         markers = self.robot.camera.see()
+
+        self.cameraExporter.newImage(markers)
 
         logger.info("Markers seen: ")
         for each in markers:
@@ -121,13 +125,3 @@ def actionMoveOrTurn(action):
         return action.changeType("turn")
     else:
          return action
-
-
-            
-
-
-
-
-
-
-        

@@ -47,4 +47,4 @@ imu = imuMapper(r)
 
 while True:
     print("Ultrasound: " + str(r.servo_board.read_ultrasound(6, 7)))
-    imu.update(true)
+    imu.update(True)

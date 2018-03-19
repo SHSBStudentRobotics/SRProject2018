@@ -4,7 +4,7 @@ import unittest, time
 
 class TestDecisions(unittest.TestCase):
     def test_decide(self):
-        r = MockRobot()
+        r = MockRobot(motor_board=MockMotorBoard())
         decider = Decider(r, time.time())
 
         #moving to cube

@@ -9,7 +9,7 @@ def main():
     try:
         while True:
             markers = r.camera.see()
-            imageList.append(list(map(lambda x: x.__dict__, markers)))
+            imageList.append(list(map(lambda x: x._raw_data, markers)))
 
             print(imageList)
 
