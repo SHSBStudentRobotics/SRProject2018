@@ -52,7 +52,7 @@ def move(robot,action,tokens, config):
 
         logger.debug("PID info: P: {0} I: {1} D: {2} TurnValue: {3} dt: {4}".format(proportionalTerm ,integralTerm ,derivativeTerm , turnValue, dt))
 
-        setBothMotors(robot,config,min(1,averageSpeed - turnValue), min(1,averageSpeed + turnValue))
+        setBothMotors(robot,config,min(1,averageSpeed + turnValue), min(1,averageSpeed - turnValue))
                 
     elif action.type == "stop":
         setBothMotors(robot, config, 0, 0) 

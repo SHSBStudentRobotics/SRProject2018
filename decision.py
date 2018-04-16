@@ -19,13 +19,14 @@ MAX_FAILED_ITERATIONS =  5 #The maximun number of failed iterations before some 
 logger = logging.getLogger(__name__)
 
 class Decider:
-    def __init__(self, robot, startTime):
+    def __init__(self, robot, startTime, config={}):
         self.robot = robot
         self.mode = SEARCHING
         self.cubes = [] # A list of cubes (ID's) that the robot believes it has picked up and is carrying.
         self.mapObj = Mapping(robot)
         self.cameraExporter = jsonCameraExporter() #Used to export the camera data for later testing.
         self.startTime = startTime
+        self.config = config
         self.numberOfFailedIterations = 0 #This is a counter that iterates upwards each time an operation fail's due to insufficient camera data.
                                             #If this occurs multiple times in a row ,some solution can be found.
 
@@ -35,6 +36,9 @@ class Decider:
 
     #returns main action class to be executed by hardware.
     def decide(self):
+        TIME_LEFT = 150 - (time.time() - self.startTime)
+
+        logger.info("New Iteration, {0} seconds left.".format(TIME_LEFT))
         markers = self.robot.camera.see()
 
         self.cameraExporter.newImage(markers)
@@ -52,8 +56,6 @@ class Decider:
         #Removes cubes we can see from the list of cubes it is carrying
         OWN_MARKERS_IDS = list(map(lambda x: x.id, OWN_MARKERS))
         self.cubes = list(filter(lambda x: x not in OWN_MARKERS_IDS, self.cubes))
-
-        TIME_LEFT = 150 - (time.time() - self.startTime)
 
         HAS_TRIANGULATION = self.mapObj.triangulate(WALL_MARKERS) == 1
 
@@ -111,12 +113,22 @@ class Decider:
     def cameraFailure(self):
         logger.warning("Camera Failure: Number of failed iterations: " + str(self.numberOfFailedIterations))
         self.numberOfFailedIterations += 1
-                
+
+        #If the ultrasound detects a close object, reverse.
+        if "hardware" in self.config:
+            if "useultrasound" in self.config:
+                if self.config["hardware"]["useultrasound"] in [y,yes]:
+                    if self.robot.servo_board.read_ultrasound(6, 7) < 1:
+                        return Action("move",0,-5)
+
+        if self.numberOfFailedIterations < 5:
+            return Action("stop",0,0)
+
         #Turns clockwise in a stop-start motion , hoping to find markers.
         if self.numberOfFailedIterations % 2 == 0:
-            return Action("turn",0,0)
+            return Action("turn",180,0)
         else:
-            return Action("stop",180,0)
+            return Action("stop",0,0)
 
             
 #Changes an action to move on the spot if larger than a maximun angle.

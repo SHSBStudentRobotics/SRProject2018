@@ -21,7 +21,8 @@ def generateConfigFile(filePath = "config.ini"):
         "InvertRightMotor": "no",
         "LeftMotorNumber" : "0",
         "RightMotorNumber" : "1",
-        "CurrentProtectionMaxChange" : "0.5"}
+        "CurrentProtectionMaxChange" : "0.5",
+        "UseUltrasound" : "no"}
     config["loggers"] = {
         "keys" : "root"}
     config["logger_root"] = {
