@@ -5,7 +5,7 @@ robot = Robot()
 startTime = time.time()
 decider = decision.Decider(robot, startTime)
 configData = config.getConfigSettings()
-logger.setupLoggers(configData)
+#logger.setupLoggers(configData)
 
 while time.time() - startTime < 150:
     action = decider.decide()

@@ -5,7 +5,7 @@ from collision import *
 from cameraExporter import *
 
 #A list of all token id's belonging to robot 0 , 1 ,2 and 3.
-TOKEN_LIST_BY_TEAM = [set(range(44, 49)), set(range(49, 54)), set(range(54, 59)), set(range(59, 64))]
+TOKEN_LIST_BY_TEAM = [set(range(44, 48)), set(range(49, 53)), set(range(54, 58)), set(range(59, 63))]
 
 #Mode "ENUM"
 SEARCHING = 0
@@ -23,6 +23,7 @@ class Decider:
         self.robot = robot
         self.mode = SEARCHING
         self.cubes = [] # A list of cubes (ID's) that the robot believes it has picked up and is carrying.
+        self.returnedCubes = [] # A list of cubes (ID's) that the robot has returned
         self.mapObj = Mapping(robot)
         self.cameraExporter = jsonCameraExporter() #Used to export the camera data for later testing.
         self.startTime = startTime
@@ -47,11 +48,11 @@ class Decider:
         for each in markers:
             logger.info("ID: " + str(each.id) + " Distance: " + str(each.spherical.distance_metres) + " Angle: " + str(each.spherical.rot_y_degrees))
 
-        #The markers we can pick up, sorted by distance.
-        OWN_MARKERS = sorted(list(filter(lambda x: x.id in TOKEN_LIST_BY_TEAM[self.robot.zone], markers)) , key = lambda x: x.spherical.distance_metres)
+        #The markers we can pick up.
+        OWN_MARKERS = list(filter(lambda x: x.id in TOKEN_LIST_BY_TEAM[self.robot.zone], markers))
 
         WALL_MARKERS = list(filter(lambda x: x.id < 28,markers ))
-        OBSTACLE_MARKERS = list(filter(lambda x: x.id >= 28,markers ))
+        OBSTACLE_MARKERS = list(filter(lambda x: x.id >= 28 and x.id <= 43,markers ))
 
         #Removes cubes we can see from the list of cubes it is carrying
         OWN_MARKERS_IDS = list(map(lambda x: x.id, OWN_MARKERS))
@@ -59,7 +60,19 @@ class Decider:
 
         HAS_TRIANGULATION = self.mapObj.triangulate(WALL_MARKERS) == 1
 
-        logger.debug("Triangulation position x: {0} y: {1} bearing: {2}.".format(self.mapObj.robotPos.x, self.mapObj.robotPos.y, self.mapObj.robotAngle))
+        #Updates self.returned cubes based on markers seen
+        if HAS_TRIANGULATION:
+            for marker in OWN_MARKERS:
+                markerPos = self.mapObj.markerToPoint(marker)
+                if self.mapObj.isPointInScoringZone(markerPos) and marker.id in self.returnedCubes:
+                    self.returnedCubes.remove(marker.id)
+                elif marker.id not in self.returnedCubes:
+                    self.returnedCubes += [marker.id]      
+                        
+        #Removes markers in scoring zone from Own_Markers, and sorts by distance.
+        OWN_MARKERS = sorted(list(filter(lambda x: x.id not in self.returnedCubes, OWN_MARKERS)), key = lambda x: x.spherical.distance_metres)
+
+        logger.info("Triangulation position x: {0} y: {1} bearing: {2}.".format(self.mapObj.robotPos.x, self.mapObj.robotPos.y, self.mapObj.robotAngle))
 
         #Changes to return mode if beyond MAX_CAPACITY or less that 30 seconds left and their is a cube to return.
         if len(self.cubes) >= MAX_CAPACITY:
@@ -71,22 +84,24 @@ class Decider:
 
         if self.mode == RETURNING:
             if not HAS_TRIANGULATION:
-                self.cameraFailure()
+                return self.cameraFailure()
             
             if self.mapObj.isInScoringZone():
-                #TODO: drop cubes.
-
+                self.returnedCubes += self.cubes
+                self.cubes = []
                 self.mode = SEARCHING
+
+                return Action("move",0, -500)
 
             angleToHome = self.mapObj.angleToScoringZone()
             distanceToHome = self.mapObj.distanceToScoringZone()
-            return actionMoveOrTurn(Action("move",angleToHome,distanceToHome))
+            return actionMoveOrTurn(moveToPoint(angleToHome,distanceToHome,OBSTACLE_MARKERS))
 
         if self.mode == SEARCHING:
             if self.targetDistance < 1 and self.targetCube not in OWN_MARKERS_IDS and self.targetCube != -1:
                 logger.info("Final Approach to cube: {0} at distance: {1} with {2} failed iterations.".format(self.targetCube, self.targetDistance,self.numberOfFailedIterations))
                 self.numberOfFailedIterations += 1
-                if self.numberOfFailedIterations > 5:
+                if self.numberOfFailedIterations < 5:
                     return Action("move", 0 ,5)
                 else:
                     logger.info("Picked up cube with ID: " + str(self.targetCube))
@@ -102,11 +117,9 @@ class Decider:
                 self.targetDistance = TARGET.spherical.distance_metres
                 self.targetCube = TARGET.id
 
-                OBSTACLE_MARKERS_WO_TARGET = list(filter(lambda x: x.id != TARGET.id, OBSTACLE_MARKERS))
-
                 logger.info("Aproaching cube: {0} at distance: {1} and angle: {2}".format(self.targetCube, self.targetDistance, TARGET.spherical.rot_y_degrees))
 
-                return actionMoveOrTurn(moveToMarker(TARGET, OBSTACLE_MARKERS_WO_TARGET))
+                return actionMoveOrTurn(moveToMarker(TARGET, OBSTACLE_MARKERS))
             else:     
                 return self.cameraFailure()
 
@@ -117,7 +130,7 @@ class Decider:
         #If the ultrasound detects a close object, reverse.
         if "hardware" in self.config:
             if "useultrasound" in self.config:
-                if self.config["hardware"]["useultrasound"] in [y,yes]:
+                if self.config["hardware"]["useultrasound"] in ['y','yes']:
                     if self.robot.servo_board.read_ultrasound(6, 7) < 1:
                         return Action("move",0,-5)
 
