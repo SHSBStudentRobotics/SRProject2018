@@ -1,0 +1,156 @@
+2018-03-15 23:58:41,865 - hardware - CRITICAL - ERROR
+2018-03-15 23:58:41,865 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-15 23:58:41,866 - hardware - INFO - 
+2018-03-15 23:58:41,867 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-15 23:59:16,493 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-15 23:59:16,494 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-15 23:59:29,126 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-15 23:59:29,129 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-16 00:02:00,790 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-16 00:02:00,792 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-16 00:02:41,492 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-16 00:02:41,494 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-18 21:49:49,269 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-18 21:49:49,270 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-18 21:50:01,690 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-18 21:50:01,691 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-18 21:55:59,165 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-18 21:55:59,167 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-18 21:59:11,515 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-18 21:59:11,517 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-18 22:00:16,200 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-18 22:00:16,202 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-18 22:00:59,891 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-18 22:00:59,893 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-18 22:01:12,467 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-18 22:01:12,468 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-18 22:02:08,866 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-18 22:02:08,868 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-18 22:03:51,635 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-18 22:03:51,637 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-19 10:59:57,181 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-19 10:59:57,212 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-19 11:23:23,427 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-19 11:23:23,429 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-19 11:25:04,942 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-19 11:25:04,944 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-19 11:26:54,246 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-19 11:26:54,286 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-19 11:28:46,657 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-19 11:28:46,658 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-20 10:25:04,438 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-20 10:25:04,474 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-16 11:40:27,753 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-16 11:40:27,794 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: 1 M1: -1.0
+2018-04-16 11:47:58,103 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-16 11:47:58,104 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: 1 M1: -1.0
+2018-04-16 11:48:28,931 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-16 11:48:28,932 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: 1 M1: -1.0
+2018-04-16 11:54:23,231 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-16 11:54:23,231 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: 1 M1: -1.0
+2018-04-20 11:10:24,296 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-20 11:10:24,317 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 07:19:37,462 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 07:19:37,495 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 07:21:06,043 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 07:21:06,043 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 07:22:15,205 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 07:22:15,206 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 07:40:59,974 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 07:40:59,975 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 07:42:27,959 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 07:42:27,962 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 07:42:44,846 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 07:42:44,849 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 07:43:04,545 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 07:43:04,546 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 07:50:33,389 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 07:50:33,421 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 07:53:51,410 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 07:53:51,411 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 07:54:23,350 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 07:54:23,352 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 08:04:14,182 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 08:04:14,182 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 09:57:15,448 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 09:57:15,471 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 10:36:10,805 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 10:36:10,806 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 10:40:47,472 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 10:40:47,473 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 10:41:23,706 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 10:41:23,707 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 10:42:36,033 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 10:42:36,034 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 10:43:11,734 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 10:43:11,735 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 10:44:52,559 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 10:44:52,560 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 11:01:47,135 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 11:01:47,135 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 11:02:11,372 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 11:02:11,373 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 11:03:04,400 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 11:03:04,401 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 11:03:31,843 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 11:03:31,843 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 11:04:02,111 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 11:04:02,112 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 11:04:37,508 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 11:04:37,510 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 11:10:27,624 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 11:10:27,625 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 11:10:49,856 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 11:10:49,858 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 11:11:27,277 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 11:11:27,279 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 11:12:11,350 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 11:12:11,352 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 12:44:04,882 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 12:44:04,882 - hardware - INFO - PID info: P: 3.0 I: 0.0 D: 805.203301977347 TurnValue: 1.6 dt: 0.003725767135620117
+2018-04-21 12:44:04,882 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: 1 M1: -1.0
+2018-04-21 12:44:58,968 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 12:44:58,968 - hardware - INFO - PID info: P: 3.0 I: 0.0 D: 699.3614939973322 TurnValue: 1.6 dt: 0.0042896270751953125
+2018-04-21 12:44:58,969 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: 1 M1: -1.0
+2018-04-21 12:45:07,989 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 12:45:07,990 - hardware - INFO - PID info: P: 3.0 I: 0.0 D: 621.7775361960765 TurnValue: 1.6 dt: 0.00482487678527832
+2018-04-21 12:45:07,990 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: 1 M1: -1.0
+2018-04-21 12:45:22,906 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 12:45:22,907 - hardware - INFO - PID info: P: 3.0 I: 0.0 D: 477.54799043606977 TurnValue: 1.6 dt: 0.00628209114074707
+2018-04-21 12:45:22,907 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: 1 M1: -1.0
+2018-04-21 13:01:18,400 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 13:01:18,401 - hardware - INFO - PID info: P: 3.0 I: 0.0 D: 330.4422910265501 TurnValue: 1.6 dt: 0.009078741073608398
+2018-04-21 13:01:18,401 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: 1 M1: -1.0
+2018-04-21 13:01:45,028 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 13:01:45,029 - hardware - INFO - PID info: P: 3.0 I: 0.0 D: 328.62994593747555 TurnValue: 1.6 dt: 0.009128808975219727
+2018-04-21 13:01:45,029 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: 1 M1: -1.0
+2018-04-21 13:02:41,248 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 13:02:41,250 - hardware - INFO - PID info: P: 3.0 I: 0.0 D: 335.91158333110866 TurnValue: 1.6 dt: 0.00893092155456543
+2018-04-21 13:02:41,250 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: 1 M1: -1.0
+2018-04-21 13:05:51,073 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 13:05:51,129 - hardware - INFO - PID info: P: 3.0 I: 0.0 D: 51.12594061336931 TurnValue: 1.6 dt: 0.058678627014160156
+2018-04-21 13:05:51,130 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: 1 M1: -1.0
+2018-04-21 13:06:52,214 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 13:06:52,215 - hardware - INFO - PID info: P: 3.0 I: 0.0 D: 245.4436078492568 TurnValue: 1.6 dt: 0.012222766876220703
+2018-04-21 13:06:52,217 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: 1 M1: -1.0
+2018-04-21 13:07:07,572 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 13:07:07,573 - hardware - INFO - PID info: P: 3.0 I: 0.0 D: 731.4795953958842 TurnValue: 1.6 dt: 0.004101276397705078
+2018-04-21 13:07:07,573 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: 1 M1: -1.0
+2018-04-21 13:07:47,743 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 13:07:47,744 - hardware - INFO - PID info: P: 3.0 I: 0.0 D: 238.0332185691045 TurnValue: 1.6 dt: 0.012603282928466797
+2018-04-21 13:07:47,745 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: 1 M1: -1.0
+2018-04-21 13:08:13,985 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 13:08:13,987 - hardware - INFO - PID info: P: 3.0 I: 0.0 D: 235.28257292445775 TurnValue: 1.6 dt: 0.012750625610351562
+2018-04-21 13:08:13,988 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: 1 M1: -1.0
+2018-04-21 15:26:49,237 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 15:26:49,238 - hardware - INFO - PID info: P: 3.0 I: 0.0 D: 3.4570101584554203 TurnValue: 1.6 dt: 0.8678019046783447
+2018-04-21 15:26:49,239 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: -0.4 M1: 0.5
+2018-04-21 16:50:22,770 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 16:50:22,794 - hardware - INFO - PID info: P: 3.0 I: 0.0 D: 4.214348847903579 TurnValue: 1.6 dt: 0.7118537425994873
+2018-04-21 16:50:22,795 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: -0.30000000000000004 M1: 0.5
+2018-04-21 16:54:42,478 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 16:54:42,478 - hardware - INFO - PID info: P: 3.0 I: 0.0 D: 4.3753501556401835 TurnValue: 1.6 dt: 0.6856594085693359
+2018-04-21 16:54:42,478 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: -0.30000000000000004 M1: 0.5
+2018-04-21 16:55:08,244 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 16:55:08,246 - hardware - INFO - PID info: P: 3.0 I: 0.0 D: 4.188002452310091 TurnValue: 1.6 dt: 0.716331958770752
+2018-04-21 16:55:08,247 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: -0.30000000000000004 M1: 0.5

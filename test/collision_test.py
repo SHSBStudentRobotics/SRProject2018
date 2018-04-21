@@ -1,6 +1,7 @@
 from MockFramework import *
 from collision import *
 import unittest
+from config import *
 
 class TestCollisions(unittest.TestCase):
     def test_WillCollide(self):
@@ -65,6 +66,7 @@ class TestCollisions(unittest.TestCase):
         self.assertFalse(willCollide(marker,30, 1))
 
     def test_MoveTowardsPoint(self):
+        robot = MockRobot
         data = """
         {  
             "homography_matrix":[  
@@ -120,7 +122,14 @@ class TestCollisions(unittest.TestCase):
             ]
          }
          """
+        config = getConfigSettings()
         marker = Marker(json.loads(data))
-        self.assertNotEqual(moveToPoint(0,8,[marker]).angle, 0)
-        self.assertEqual(moveToPoint(0,1,[marker]).angle, 0)
-        self.assertEqual(moveToPoint(50,8,[marker]).angle, 50)
+        self.assertNotEqual(moveToPoint(robot, config, 0,8,[marker]).angle, 0)
+        self.assertEqual(moveToPoint(robot, config, 0,1,[marker]).angle, 0)
+        self.assertEqual(moveToPoint(robot, config, 50,8,[marker]).angle, 50)
+
+        ultrasoundData = [0.5, 1, 1.5, 4]
+        self.assertEqual(getUltrasoundAction(ultrasoundData[0], config).type, "reverseTurn")
+        self.assertEqual(getUltrasoundAction(ultrasoundData[1], config).type, "reverseTurn")
+        self.assertEqual(getUltrasoundAction(ultrasoundData[2], config).type, "none")
+        self.assertEqual(getUltrasoundAction(ultrasoundData[3], config).type, "none")

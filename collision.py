@@ -1,7 +1,15 @@
 import math, logging
 from action import *
 
+
 logger = logging.getLogger(__name__)
+
+def getUltrasoundAction(ultrasoundSensorDistance, config):
+    logger.info("Ultrasound distance : " + str(ultrasoundSensorDistance))
+    if ultrasoundSensorDistance <= float(config["Hardware"]["UltrasoundBuffer"]):
+        logger.info("Ultrasound reads object within 1 metre")
+        return Action("reverseTurn", 180, 1)
+    else: return Action("none", 0, 0)
 
 def willCollide(Object, PathAngle, PathDistance):
     #Object is object taken from sourcebots API
@@ -37,11 +45,11 @@ def willCollide(Object, PathAngle, PathDistance):
     logger.debug("Collision with object " + str(Object.id))
     return True
 
-def moveToMarker(marker,objects):
+def moveToMarker(robot, config, marker,objects):
     #Marker must not be in the objects list.
-    return moveToPoint(marker.spherical.rot_y_degrees, marker.distance_metres , objects)
+    return moveToPoint(robot, config, marker.spherical.rot_y_degrees, marker.distance_metres , objects)
 
-def moveToPoint(angle, distance, objects):
+def moveToPoint(robot, config, angle, distance, objects):
     #Distance in metres , angle in degrees.
 
     logger.info("Checking for collision on path of distance {0} and and angle {1}".format(distance,angle))
@@ -55,6 +63,10 @@ def moveToPoint(angle, distance, objects):
     #List of objects that are in the way, sorted by distance.
     collisionObjects = sorted(list(filter(lambda x: willCollide(x,angle,distance), objects)), key = lambda x: x.distance_metres)
     
+    #Distance to nearest object via ultrasound
+    ultrasoundAction = getUltrasoundAction(robot.servo_board.read_ultrasound(6, 7), config)
+    if (ultrasoundAction.type != "none") and abs(): return ultrasoundAction
+        
 
     if len(collisionObjects) == 0:
         logger.info("No collision")
@@ -80,3 +92,4 @@ def moveToPoint(angle, distance, objects):
 
     else:
         return Action("move",movementAngle , distance)
+

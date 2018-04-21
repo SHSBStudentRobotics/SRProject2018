@@ -34,39 +34,39 @@ class TestVision(unittest.TestCase):
         marker1 = Marker({"id": 0, "polar": [
             0,
           radians(-30),
-          223
+          2.23
         ],})
         marker2 = Marker({"id": 2, "polar": [
          0,
          radians(30),
-          223
+          2.23
         ],})
         r = MockRobot()
         mapObj = Mapping(r)
         mapObj.triangulate([marker1, marker2])
         
-        self.assertAlmostEqual(mapObj.robotPos.x, 200,places=-1)
-        self.assertAlmostEqual(mapObj.robotPos.y, 200,places=-1)
+        self.assertAlmostEqual(mapObj.robotPos.x, 2.00,places=-1)
+        self.assertAlmostEqual(mapObj.robotPos.y, 2.00,places=-1)
         self.assertAlmostEqual(mapObj.robotAngle, 0,places=-1)
 
     def test_isInHome(self):
         r = MockRobot(motor_board = MockMotorBoard() ,camera = None)
         map = Mapping(r)
 
-        map.robotPos.update(245,245)
+        map.robotPos.update(2.45,2.45)
         self.assertTrue(map.isInScoringZone())
 
-        map.robotPos.update(400,200)
+        map.robotPos.update(4.00,2.00)
         self.assertFalse(map.isInScoringZone())
 
-        map.robotPos.update(200,400)
+        map.robotPos.update(2.00,4.00)
         self.assertFalse(map.isInScoringZone())
 
     def test_markerToPoint(self):
         r = MockRobot(motor_board = MockMotorBoard() ,camera = None)
         map = Mapping(r)
 
-        map.robotPos.update(400,400)
+        map.robotPos.update(4.00,4.00)
         map.robotAngle = 45
 
         marker = Marker({
@@ -75,27 +75,27 @@ class TestVision(unittest.TestCase):
             [
                 0,
                 radians(0),
-                100
+                1.00
             ]
         })
 
         #Just checking the signs are correct (correct quadrant)
         temp = map.markerToPoint(marker)
-        self.assertGreater(temp.x, 400)
-        self.assertLess(temp.y, 400)
+        self.assertGreater(temp.x, 4.00)
+        self.assertLess(temp.y, 4.00)
 
         map.robotAngle = 135
         temp = map.markerToPoint(marker)
-        self.assertGreater(temp.x, 400)
-        self.assertGreater(temp.y, 400)
+        self.assertGreater(temp.x, 4.00)
+        self.assertGreater(temp.y, 4.00)
 
         map.robotAngle = 225
         temp = map.markerToPoint(marker)
-        self.assertLess(temp.x, 400)
-        self.assertGreater(temp.y, 400)
+        self.assertLess(temp.x, 4.00)
+        self.assertGreater(temp.y, 4.00)
 
         map.robotAngle = 315
         temp = map.markerToPoint(marker)
-        self.assertLess(temp.x, 400)
-        self.assertLess(temp.y, 400)
+        self.assertLess(temp.x, 4.00)
+        self.assertLess(temp.y, 4.00)
 

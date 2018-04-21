@@ -1,4 +1,5 @@
 import math, time
+from hardware import *
 
 #Internally , all angles are in degrees and all are distances in meters
 
@@ -47,48 +48,48 @@ class Mapping:
     def __init__(self, robot):
         self.robot = robot
         self.markerPos = [
-            Point(100, 0),
-            Point(200, 0),
-            Point(300, 0),
-            Point(400, 0),
-            Point(500, 0),
-            Point(600, 0),
-            Point(700, 0),
-            Point(800, 100),
-            Point(800, 200),
-            Point(800, 300),
-            Point(800, 400),
-            Point(800, 500),
-            Point(800, 600),
-            Point(800, 700),
-            Point(700, 800),
-            Point(600, 800),
-            Point(500, 800),
-            Point(400, 800),
-            Point(300, 800),
-            Point(200, 800),
-            Point(100, 800),
-            Point(0, 700),
-            Point(0, 600),
-            Point(0, 500),
-            Point(0, 400),
-            Point(0, 300),
-            Point(0, 200),
-            Point(0, 100)
+            Point(1, 0),
+            Point(2, 0),
+            Point(3, 0),
+            Point(4, 0),
+            Point(5, 0),
+            Point(6, 0),
+            Point(7, 0),
+            Point(8, 1),
+            Point(8, 2),
+            Point(8, 3),
+            Point(8, 4),
+            Point(8, 5),
+            Point(8, 6),
+            Point(8, 7),
+            Point(7, 8),
+            Point(6, 8),
+            Point(5, 8),
+            Point(4, 8),
+            Point(3, 8),
+            Point(2, 8),
+            Point(1, 8),
+            Point(0, 7),
+            Point(0, 6),
+            Point(0, 5),
+            Point(0, 4),
+            Point(0, 3),
+            Point(0, 2),
+            Point(0, 1)
         ]
         #Base is the starting area, scoring is the center of scoring zone.
-        if self.robot.zone == 0:
+        if getZone(self.robot) == 0:
             self.base = Point(0,0)
-            self.scoringZone = Point(150,150)
-        elif self.robot.zone == 1:
-            self.base = Point(800,0)
-            self.scoringZone = Point(650,150)
-        elif self.robot.zone == 2:
-            self.base = Point(800,800)
-            self.scoringZone = Point(650,650)
-        elif self.robot.zone == 3:
-            self.base = Point(0,800)
-            self.scoringZone = Point(150,650)
+            self.scoringZone = Point(1.50,1.50)
+        elif getZone(self.robot) == 1:
+            self.base = Point(8.00,0)
+            self.scoringZone = Point(6.50,1.50)
+        elif getZone(self.robot)== 2:
+            self.base = Point(8.00,8.00)
+            self.scoringZone = Point(6.50,6.50)
+        elif getZone(self.robot) == 3:
+            self.base = Point(0,8.00)
+            self.scoringZone = Point(1.50,6.50)
         self.robotPos = Point(self.base.x,self.base.y)
         self.robotAngle = 0
 
@@ -125,15 +126,15 @@ class Mapping:
             print("Triangulation failed , discrimant is negative")
             return 0
 
-        if x >= 0 and x <= 800 and y >= 0 and y <= 800: #If First solution in bounds
-            if otherx >= 0 and otherx <= 800 and othery >= 0 and othery <= 800: #If second solution in bounds
+        if x >= 0 and x <= 8 and y >= 0 and y <= 8: #If First solution in bounds
+            if otherx >= 0 and otherx <= 8 and othery >= 0 and othery <= 8: #If second solution in bounds
                 dist1 = math.sqrt((x-self.robotPos.x)**2 + (y-self.robotPos.y)**2)
                 dist2 = math.sqrt((otherx-self.robotPos.x)**2 + (othery-self.robotPos.y)**2)
                 if dist2 < dist1: #Pick solution closest to last coordinate
                     x = otherx
                     y = othery
         else:
-            if otherx >= 0 and otherx <= 800 and othery >= 0 and othery <= 800: #If only second solution in bounds
+            if otherx >= 0 and otherx <= 8 and othery >= 0 and othery <= 8: #If only second solution in bounds
                 x = otherx
                 y = othery
             else: #No solutions
@@ -162,16 +163,16 @@ class Mapping:
         return distanceBetweenPoints(point, self.robotPos )
 
     def isInScoringZone(self):
-        return self.isPointInScoringZone(self.robotPos, 50)
+        return self.isPointInScoringZone(self.robotPos, 0.50)
 
-    def isPointInScoringZone(self, point, border = 50):
+    def isPointInScoringZone(self, point, border = 0.50):
         #Border is How far the point must be into the scoring zone
         
         #Calculates the edges of the box that the robot must be in
-        lowerX = [100, 481.5, 481.5, 100][self.robot.zone] + border
-        upperX = lowerX + 218.5 - border * 2
-        lowerY = [100,100,481.5,481.5][self.robot.zone] + border
-        upperY = lowerY + 218.5 - border * 2
+        lowerX = [1, 4.815, 4.815, 1][getZone(self.robot)] + border
+        upperX = lowerX + 2.185 - border * 2
+        lowerY = [1,1,4.815,4.815][getZone(self.robot)] + border
+        upperY = lowerY + 2.185 - border * 2
 
         return point.x > lowerX and point.x < upperX and point.y > lowerY and point.y < upperY
 

@@ -1,0 +1,1 @@
+2018-03-15 23:58:41,865 - hardware - CRITICAL - ERROR

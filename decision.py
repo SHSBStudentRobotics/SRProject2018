@@ -5,7 +5,7 @@ from collision import *
 from cameraExporter import *
 
 #A list of all token id's belonging to robot 0 , 1 ,2 and 3.
-TOKEN_LIST_BY_TEAM = [set(range(44, 48)), set(range(49, 53)), set(range(54, 58)), set(range(59, 63))]
+TOKEN_LIST_BY_TEAM = [set(range(44, 49)), set(range(49, 54)), set(range(54, 59)), set(range(59, 64))]
 
 #Mode "ENUM"
 SEARCHING = 0
@@ -42,14 +42,14 @@ class Decider:
         logger.info("New Iteration, {0} seconds left.".format(TIME_LEFT))
         markers = self.robot.camera.see()
 
-        self.cameraExporter.newImage(markers)
+        #self.cameraExporter.newImage(markers)
 
         logger.info("Markers seen: ")
         for each in markers:
             logger.info("ID: " + str(each.id) + " Distance: " + str(each.spherical.distance_metres) + " Angle: " + str(each.spherical.rot_y_degrees))
 
         #The markers we can pick up.
-        OWN_MARKERS = list(filter(lambda x: x.id in TOKEN_LIST_BY_TEAM[self.robot.zone], markers))
+        OWN_MARKERS = list(filter(lambda x: x.id in TOKEN_LIST_BY_TEAM[getZone(self.robot)], markers))
 
         WALL_MARKERS = list(filter(lambda x: x.id < 28,markers ))
         OBSTACLE_MARKERS = list(filter(lambda x: x.id >= 28 and x.id <= 43,markers ))
@@ -77,14 +77,16 @@ class Decider:
         #Changes to return mode if beyond MAX_CAPACITY or less that 30 seconds left and their is a cube to return.
         if len(self.cubes) >= MAX_CAPACITY:
             self.mode = RETURNING
+            resetSetpoint()
         if TIME_LEFT < 30 and len(self.cubes) >= 1:
             self.mode = RETURNING
+            resetSetpoint()
 
         logger.info("Mode: " + str(self.mode))
 
         if self.mode == RETURNING:
             if not HAS_TRIANGULATION:
-                return self.cameraFailure()
+                return self.cameraFailureReturning()
             
             if self.mapObj.isInScoringZone():
                 self.returnedCubes += self.cubes
@@ -95,7 +97,7 @@ class Decider:
 
             angleToHome = self.mapObj.angleToScoringZone()
             distanceToHome = self.mapObj.distanceToScoringZone()
-            return actionMoveOrTurn(moveToPoint(angleToHome,distanceToHome,OBSTACLE_MARKERS))
+            return actionMoveOrTurn(moveToPoint(self.robot, angleToHome,distanceToHome,OBSTACLE_MARKERS))
 
         if self.mode == SEARCHING:
             if self.targetDistance < 1 and self.targetCube not in OWN_MARKERS_IDS and self.targetCube != -1:
@@ -113,40 +115,39 @@ class Decider:
             if len(OWN_MARKERS) > 0:
                 self.numberOfFailedIterations = 0
 
+                if OWN_MARKERS[0].id != self.targetCube:
+                    resetSetpoint()
+
                 TARGET = OWN_MARKERS[0]
                 self.targetDistance = TARGET.spherical.distance_metres
                 self.targetCube = TARGET.id
 
                 logger.info("Aproaching cube: {0} at distance: {1} and angle: {2}".format(self.targetCube, self.targetDistance, TARGET.spherical.rot_y_degrees))
 
-                return actionMoveOrTurn(moveToMarker(TARGET, OBSTACLE_MARKERS))
+                return actionMoveOrTurn(moveToMarker(self.robot, self.config, TARGET, OBSTACLE_MARKERS))
             else:     
-                return self.cameraFailure()
+                return self.cameraFailureSearching(HAS_TRIANGULATION, self.mapObj)
 
-    def cameraFailure(self):
-        logger.warning("Camera Failure: Number of failed iterations: " + str(self.numberOfFailedIterations))
+    def cameraFailureSearching(self, HAS_TRIANGULATION, position):
+        logger.info("Camera failure in searching state.")
+        if HAS_TRIANGULATION:
+            OPPPOSITE_CORNER = [Point(5,5), Point(1,5), Point(1,1), Point(5, 1)][getZone(self.robot)]
+            return Action("move",position.angleToPoint(OPPPOSITE_CORNER), position.distanceToPoint(OPPPOSITE_CORNER))
+
+        cameraFailureReturning()
+
+    def cameraFailureReturning(self):
+        resetSetpoint()
+
+        ultrasound = self.robot.servo_board.read_ultrasound(6, 7)
+        print("Camera failure, Ultrasound: " + str(ultrasound))
+
+        if ultrasound > 1:
+            return Action("move", 0 , 10)
+
         self.numberOfFailedIterations += 1
 
-        #If the ultrasound detects a close object, reverse.
-        if "hardware" in self.config:
-            if "useultrasound" in self.config:
-                if self.config["hardware"]["useultrasound"] in ['y','yes']:
-                    if self.robot.servo_board.read_ultrasound(6, 7) < 1:
-                        return Action("reverse",0,-5)
-
-        if self.numberOfFailedIterations < 5:
-            return Action("stop",0,0)
-
-        #Turns clockwise in a stop-start motion , hoping to find markers.
         if self.numberOfFailedIterations % 2 == 0:
-            return Action("turn",180,0)
+            return Action("turn",25 ,0 )
         else:
             return Action("stop",0,0)
-
-            
-#Changes an action to move on the spot if larger than a maximun angle.
-def actionMoveOrTurn(action):
-    if action.angle > 60:
-        return action.changeType("turn")
-    else:
-         return action

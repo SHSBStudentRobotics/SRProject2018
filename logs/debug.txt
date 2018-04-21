@@ -1,0 +1,278 @@
+2018-03-15 23:58:41,865 - hardware - CRITICAL - ERROR
+2018-03-15 23:58:41,865 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-15 23:58:41,866 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-03-15 23:58:41,866 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 465.61989342806396 TurnValue: 1.6 dt: 0.006443023681640625
+2018-03-15 23:58:41,866 - hardware - INFO - 
+2018-03-15 23:58:41,867 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-15 23:59:16,493 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-15 23:59:16,493 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-03-15 23:59:16,494 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 645.0790525992003 TurnValue: 1.6 dt: 0.004650592803955078
+2018-03-15 23:59:16,494 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-15 23:59:29,126 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-15 23:59:29,127 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-03-15 23:59:29,128 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 449.9521544788129 TurnValue: 1.6 dt: 0.006667375564575195
+2018-03-15 23:59:29,129 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-16 00:02:00,790 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-16 00:02:00,790 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-03-16 00:02:00,791 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 364.04675384793427 TurnValue: 1.6 dt: 0.008240699768066406
+2018-03-16 00:02:00,792 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-16 00:02:41,492 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-16 00:02:41,493 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-03-16 00:02:41,494 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 422.11788386057907 TurnValue: 1.6 dt: 0.0071070194244384766
+2018-03-16 00:02:41,494 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-18 21:49:49,269 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-18 21:49:49,269 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-03-18 21:49:49,270 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 726.6219322053474 TurnValue: 1.6 dt: 0.004128694534301758
+2018-03-18 21:49:49,270 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-18 21:50:01,690 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-18 21:50:01,690 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-03-18 21:50:01,691 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 410.17413697558436 TurnValue: 1.6 dt: 0.007313966751098633
+2018-03-18 21:50:01,691 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-18 21:55:59,165 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-18 21:55:59,166 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-03-18 21:55:59,166 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 290.1561592030623 TurnValue: 1.6 dt: 0.01033926010131836
+2018-03-18 21:55:59,167 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-18 21:59:11,515 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-18 21:59:11,516 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-03-18 21:59:11,516 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 304.92201812630253 TurnValue: 1.6 dt: 0.009838581085205078
+2018-03-18 21:59:11,517 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-18 22:00:16,200 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-18 22:00:16,200 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-03-18 22:00:16,201 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 271.4232835048211 TurnValue: 1.6 dt: 0.011052846908569336
+2018-03-18 22:00:16,202 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-18 22:00:59,891 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-18 22:00:59,891 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-03-18 22:00:59,892 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 276.1893808029149 TurnValue: 1.6 dt: 0.010862112045288086
+2018-03-18 22:00:59,893 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-18 22:01:12,467 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-18 22:01:12,467 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-03-18 22:01:12,468 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 343.6357975803589 TurnValue: 1.6 dt: 0.008730173110961914
+2018-03-18 22:01:12,468 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-18 22:02:08,866 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-18 22:02:08,866 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-03-18 22:02:08,867 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 283.2075624577988 TurnValue: 1.6 dt: 0.010592937469482422
+2018-03-18 22:02:08,868 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-18 22:03:51,635 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-18 22:03:51,636 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-03-18 22:03:51,637 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 249.1567066650826 TurnValue: 1.6 dt: 0.01204061508178711
+2018-03-18 22:03:51,637 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-19 10:59:57,181 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-19 10:59:57,210 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-03-19 10:59:57,211 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 82.12799342083792 TurnValue: 1.6 dt: 0.03652834892272949
+2018-03-19 10:59:57,212 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-19 11:23:23,427 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-19 11:23:23,428 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-03-19 11:23:23,428 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 266.1641882601798 TurnValue: 1.6 dt: 0.011271238327026367
+2018-03-19 11:23:23,429 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-19 11:25:04,942 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-19 11:25:04,943 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-03-19 11:25:04,943 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 373.0591479142578 TurnValue: 1.6 dt: 0.008041620254516602
+2018-03-19 11:25:04,944 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-19 11:26:54,246 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-19 11:26:54,285 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-03-19 11:26:54,286 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 63.25105561587647 TurnValue: 1.6 dt: 0.04743003845214844
+2018-03-19 11:26:54,286 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-19 11:28:46,657 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-19 11:28:46,657 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-03-19 11:28:46,658 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 397.03748580083305 TurnValue: 1.6 dt: 0.007555961608886719
+2018-03-19 11:28:46,658 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-03-20 10:25:04,438 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-03-20 10:25:04,473 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-03-20 10:25:04,474 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 69.60268168291091 TurnValue: 1.6 dt: 0.04310178756713867
+2018-03-20 10:25:04,474 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-16 11:40:27,753 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-16 11:40:27,791 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-16 11:40:27,793 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 64.75889328063242 TurnValue: 1.6 dt: 0.04632568359375
+2018-04-16 11:40:27,794 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: 1 M1: -1.0
+2018-04-16 11:47:58,103 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-16 11:47:58,104 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-16 11:47:58,104 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 603.0053194038434 TurnValue: 1.6 dt: 0.004975080490112305
+2018-04-16 11:47:58,104 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: 1 M1: -1.0
+2018-04-16 11:48:28,931 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-16 11:48:28,931 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-16 11:48:28,931 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 467.1584184147021 TurnValue: 1.6 dt: 0.006421804428100586
+2018-04-16 11:48:28,932 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: 1 M1: -1.0
+2018-04-16 11:54:23,231 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-16 11:54:23,231 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-16 11:54:23,231 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 919.6690542318374 TurnValue: 1.6 dt: 0.003262042999267578
+2018-04-16 11:54:23,231 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: 1 M1: -1.0
+2018-04-20 11:10:24,296 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-20 11:10:24,317 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-20 11:10:24,317 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 91.86283628399343 TurnValue: 1.6 dt: 0.03265738487243652
+2018-04-20 11:10:24,317 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 07:19:37,462 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 07:19:37,494 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 07:19:37,495 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 70.93560334864843 TurnValue: 1.6 dt: 0.042291879653930664
+2018-04-21 07:19:37,495 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 07:21:06,043 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 07:21:06,043 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 07:21:06,043 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 757.7785004516712 TurnValue: 1.6 dt: 0.003958940505981445
+2018-04-21 07:21:06,043 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 07:22:15,205 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 07:22:15,206 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 07:22:15,206 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 603.3812218279467 TurnValue: 1.6 dt: 0.004971981048583984
+2018-04-21 07:22:15,206 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 07:40:59,974 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 07:40:59,974 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 07:40:59,974 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 541.8997416020673 TurnValue: 1.6 dt: 0.005536079406738281
+2018-04-21 07:40:59,975 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 07:42:27,959 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 07:42:27,960 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 07:42:27,961 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 278.5925696320241 TurnValue: 1.6 dt: 0.010768413543701172
+2018-04-21 07:42:27,962 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 07:42:44,846 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 07:42:44,847 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 07:42:44,848 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 302.779537032581 TurnValue: 1.6 dt: 0.009908199310302734
+2018-04-21 07:42:44,849 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 07:43:04,545 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 07:43:04,545 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 07:43:04,546 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 762.1849900054516 TurnValue: 1.6 dt: 0.003936052322387695
+2018-04-21 07:43:04,546 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 07:50:33,389 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 07:50:33,420 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 07:50:33,421 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 87.41411362594306 TurnValue: 1.6 dt: 0.034319400787353516
+2018-04-21 07:50:33,421 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 07:53:51,410 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 07:53:51,410 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 07:53:51,411 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 989.0671278100929 TurnValue: 1.6 dt: 0.003033161163330078
+2018-04-21 07:53:51,411 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 07:54:23,350 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 07:54:23,350 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 07:54:23,351 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 335.62486996879255 TurnValue: 1.6 dt: 0.00893855094909668
+2018-04-21 07:54:23,352 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 08:04:14,182 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 08:04:14,182 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 08:04:14,182 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 656.7967428750392 TurnValue: 1.6 dt: 0.004567623138427734
+2018-04-21 08:04:14,182 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 09:57:15,448 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 09:57:15,470 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 09:57:15,470 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 115.19964843857288 TurnValue: 1.6 dt: 0.026041746139526367
+2018-04-21 09:57:15,471 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 10:36:10,805 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 10:36:10,805 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 10:36:10,806 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 663.5157139843915 TurnValue: 1.6 dt: 0.004521369934082031
+2018-04-21 10:36:10,806 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 10:40:47,472 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 10:40:47,472 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 10:40:47,472 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 654.8143213988343 TurnValue: 1.6 dt: 0.004581451416015625
+2018-04-21 10:40:47,473 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 10:41:23,706 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 10:41:23,707 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 10:41:23,707 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 969.2583577260823 TurnValue: 1.6 dt: 0.0030951499938964844
+2018-04-21 10:41:23,707 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 10:42:36,033 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 10:42:36,033 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 10:42:36,033 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 1177.4035744362309 TurnValue: 1.6 dt: 0.0025479793548583984
+2018-04-21 10:42:36,034 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 10:43:11,734 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 10:43:11,734 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 10:43:11,735 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 334.92805238361416 TurnValue: 1.6 dt: 0.008957147598266602
+2018-04-21 10:43:11,735 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 10:44:52,559 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 10:44:52,559 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 10:44:52,559 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 754.5521707843608 TurnValue: 1.6 dt: 0.003975868225097656
+2018-04-21 10:44:52,560 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 11:01:47,135 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 11:01:47,135 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 11:01:47,135 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 1022.0869141418243 TurnValue: 1.6 dt: 0.002935171127319336
+2018-04-21 11:01:47,135 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 11:02:11,372 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 11:02:11,373 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 11:02:11,373 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 1181.3831565111257 TurnValue: 1.6 dt: 0.002539396286010742
+2018-04-21 11:02:11,373 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 11:03:04,400 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 11:03:04,400 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 11:03:04,400 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 1244.6005934718103 TurnValue: 1.6 dt: 0.002410411834716797
+2018-04-21 11:03:04,401 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 11:03:31,843 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 11:03:31,843 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 11:03:31,843 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 948.2224566691787 TurnValue: 1.6 dt: 0.0031638145446777344
+2018-04-21 11:03:31,843 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 11:04:02,111 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 11:04:02,112 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 11:04:02,112 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 516.9431001191406 TurnValue: 1.6 dt: 0.005803346633911133
+2018-04-21 11:04:02,112 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 11:04:37,508 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 11:04:37,509 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 11:04:37,509 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 258.4343896978784 TurnValue: 1.6 dt: 0.011608362197875977
+2018-04-21 11:04:37,510 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 11:10:27,624 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 11:10:27,624 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 11:10:27,625 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 308.5256963515104 TurnValue: 1.6 dt: 0.009723663330078125
+2018-04-21 11:10:27,625 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 11:10:49,856 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 11:10:49,857 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 11:10:49,857 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 270.26896062890654 TurnValue: 1.6 dt: 0.011100053787231445
+2018-04-21 11:10:49,858 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 11:11:27,277 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 11:11:27,278 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 11:11:27,279 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 269.3894538525766 TurnValue: 1.6 dt: 0.011136293411254883
+2018-04-21 11:11:27,279 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 11:12:11,350 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 11:12:11,350 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 11:12:11,351 - hardware - DEBUG - PID info: P: 3.0 I: 0.0 D: 272.39277828289386 TurnValue: 1.6 dt: 0.011013507843017578
+2018-04-21 11:12:11,352 - hardware - INFO - Motors set to Left: -1.0 Right:  1 M0: 0.5 M1: -0.5
+2018-04-21 12:44:04,882 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 12:44:04,882 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 12:44:04,882 - hardware - INFO - PID info: P: 3.0 I: 0.0 D: 805.203301977347 TurnValue: 1.6 dt: 0.003725767135620117
+2018-04-21 12:44:04,882 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: 1 M1: -1.0
+2018-04-21 12:44:58,968 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 12:44:58,968 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 12:44:58,968 - hardware - INFO - PID info: P: 3.0 I: 0.0 D: 699.3614939973322 TurnValue: 1.6 dt: 0.0042896270751953125
+2018-04-21 12:44:58,969 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: 1 M1: -1.0
+2018-04-21 12:45:07,989 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 12:45:07,990 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 12:45:07,990 - hardware - INFO - PID info: P: 3.0 I: 0.0 D: 621.7775361960765 TurnValue: 1.6 dt: 0.00482487678527832
+2018-04-21 12:45:07,990 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: 1 M1: -1.0
+2018-04-21 12:45:22,906 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 12:45:22,907 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 12:45:22,907 - hardware - INFO - PID info: P: 3.0 I: 0.0 D: 477.54799043606977 TurnValue: 1.6 dt: 0.00628209114074707
+2018-04-21 12:45:22,907 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: 1 M1: -1.0
+2018-04-21 13:01:18,400 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 13:01:18,400 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 13:01:18,401 - hardware - INFO - PID info: P: 3.0 I: 0.0 D: 330.4422910265501 TurnValue: 1.6 dt: 0.009078741073608398
+2018-04-21 13:01:18,401 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: 1 M1: -1.0
+2018-04-21 13:01:45,028 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 13:01:45,028 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 13:01:45,029 - hardware - INFO - PID info: P: 3.0 I: 0.0 D: 328.62994593747555 TurnValue: 1.6 dt: 0.009128808975219727
+2018-04-21 13:01:45,029 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: 1 M1: -1.0
+2018-04-21 13:02:41,248 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 13:02:41,249 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 13:02:41,250 - hardware - INFO - PID info: P: 3.0 I: 0.0 D: 335.91158333110866 TurnValue: 1.6 dt: 0.00893092155456543
+2018-04-21 13:02:41,250 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: 1 M1: -1.0
+2018-04-21 13:05:51,073 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 13:05:51,128 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 13:05:51,129 - hardware - INFO - PID info: P: 3.0 I: 0.0 D: 51.12594061336931 TurnValue: 1.6 dt: 0.058678627014160156
+2018-04-21 13:05:51,130 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: 1 M1: -1.0
+2018-04-21 13:06:52,214 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 13:06:52,215 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 13:06:52,215 - hardware - INFO - PID info: P: 3.0 I: 0.0 D: 245.4436078492568 TurnValue: 1.6 dt: 0.012222766876220703
+2018-04-21 13:06:52,217 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: 1 M1: -1.0
+2018-04-21 13:07:07,572 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 13:07:07,572 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 13:07:07,573 - hardware - INFO - PID info: P: 3.0 I: 0.0 D: 731.4795953958842 TurnValue: 1.6 dt: 0.004101276397705078
+2018-04-21 13:07:07,573 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: 1 M1: -1.0
+2018-04-21 13:07:47,743 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 13:07:47,743 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 13:07:47,744 - hardware - INFO - PID info: P: 3.0 I: 0.0 D: 238.0332185691045 TurnValue: 1.6 dt: 0.012603282928466797
+2018-04-21 13:07:47,745 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: 1 M1: -1.0
+2018-04-21 13:08:13,985 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 13:08:13,986 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 13:08:13,987 - hardware - INFO - PID info: P: 3.0 I: 0.0 D: 235.28257292445775 TurnValue: 1.6 dt: 0.012750625610351562
+2018-04-21 13:08:13,988 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: 1 M1: -1.0
+2018-04-21 15:26:49,237 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 15:26:49,237 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 15:26:49,238 - hardware - INFO - PID info: P: 3.0 I: 0.0 D: 3.4570101584554203 TurnValue: 1.6 dt: 0.8678019046783447
+2018-04-21 15:26:49,239 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: -0.4 M1: 0.5
+2018-04-21 16:50:22,770 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 16:50:22,793 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 16:50:22,794 - hardware - INFO - PID info: P: 3.0 I: 0.0 D: 4.214348847903579 TurnValue: 1.6 dt: 0.7118537425994873
+2018-04-21 16:50:22,795 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: -0.30000000000000004 M1: 0.5
+2018-04-21 16:54:42,478 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 16:54:42,478 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 16:54:42,478 - hardware - INFO - PID info: P: 3.0 I: 0.0 D: 4.3753501556401835 TurnValue: 1.6 dt: 0.6856594085693359
+2018-04-21 16:54:42,478 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: -0.30000000000000004 M1: 0.5
+2018-04-21 16:55:08,244 - hardware - INFO - Move executed with action: Type: move Distance: 100 Angle: 30
+2018-04-21 16:55:08,245 - hardware - DEBUG - Move speed: 0.6 NumberOfCubes: 0 CubeSpeedIncrease: 0.0
+2018-04-21 16:55:08,246 - hardware - INFO - PID info: P: 3.0 I: 0.0 D: 4.188002452310091 TurnValue: 1.6 dt: 0.716331958770752
+2018-04-21 16:55:08,247 - hardware - INFO - Motors set to Left: 1 Right:  -1.0 M0: -0.30000000000000004 M1: 0.5
