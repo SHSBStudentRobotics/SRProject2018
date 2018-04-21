@@ -162,21 +162,30 @@ class Mapping:
         return distanceBetweenPoints(point, self.robotPos )
 
     def isInScoringZone(self):
-        BORDER = 50 #How far the robot must be into the scoring zone
+        return self.isPointInScoringZone(self.robotPos, 50)
+
+    def isPointInScoringZone(self, point, border = 50):
+        #Border is How far the point must be into the scoring zone
         
         #Calculates the edges of the box that the robot must be in
-        lowerX = [100,400,400,100][self.robot.zone] + BORDER
-        upperX = lowerX + 300 - BORDER * 2
-        lowerY = [100,100,400,400][self.robot.zone] + BORDER
-        upperY = lowerY + 300 - BORDER * 2
+        lowerX = [100, 481.5, 481.5, 100][self.robot.zone] + border
+        upperX = lowerX + 218.5 - border * 2
+        lowerY = [100,100,481.5,481.5][self.robot.zone] + border
+        upperY = lowerY + 218.5 - border * 2
 
-        return self.robotPos.x > lowerX and self.robotPos.x < upperX and self.robotPos.y > lowerY and self.robotPos.y < upperY
+        return point.x > lowerX and point.x < upperX and point.y > lowerY and point.y < upperY
 
     def angleToScoringZone(self):
         return self.angleToPoint(self.scoringZone)
 
     def distanceToScoringZone(self):
         return self.distanceToPoint(self.scoringZone)     
+
+    def markerToPoint(self, marker):
+        x = self.robotPos.x + marker.spherical.distance_metres * math.sin(math.radians(self.robotAngle) + marker.spherical.rot_y_radians)
+        y = self.robotPos.y - marker.spherical.distance_metres * math.cos(math.radians(self.robotAngle) + marker.spherical.rot_y_radians)
+
+        return Point(x, y)
 
 def angleBetweenPoints(point, point2):
     return getAngleFromNorth(point.x - point2.x, point.y - point2.y)

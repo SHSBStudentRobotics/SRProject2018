@@ -61,3 +61,41 @@ class TestVision(unittest.TestCase):
 
         map.robotPos.update(200,400)
         self.assertFalse(map.isInScoringZone())
+
+    def test_markerToPoint(self):
+        r = MockRobot(motor_board = MockMotorBoard() ,camera = None)
+        map = Mapping(r)
+
+        map.robotPos.update(400,400)
+        map.robotAngle = 45
+
+        marker = Marker({
+            "id": 44,
+            "polar": 
+            [
+                0,
+                radians(0),
+                100
+            ]
+        })
+
+        #Just checking the signs are correct (correct quadrant)
+        temp = map.markerToPoint(marker)
+        self.assertGreater(temp.x, 400)
+        self.assertLess(temp.y, 400)
+
+        map.robotAngle = 135
+        temp = map.markerToPoint(marker)
+        self.assertGreater(temp.x, 400)
+        self.assertGreater(temp.y, 400)
+
+        map.robotAngle = 225
+        temp = map.markerToPoint(marker)
+        self.assertLess(temp.x, 400)
+        self.assertGreater(temp.y, 400)
+
+        map.robotAngle = 315
+        temp = map.markerToPoint(marker)
+        self.assertLess(temp.x, 400)
+        self.assertLess(temp.y, 400)
+
