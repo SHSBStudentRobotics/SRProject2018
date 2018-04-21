@@ -91,7 +91,7 @@ class Decider:
                 self.cubes = []
                 self.mode = SEARCHING
 
-                return Action("move",0, -500)
+                return Action("reverse",0, -500)
 
             angleToHome = self.mapObj.angleToScoringZone()
             distanceToHome = self.mapObj.distanceToScoringZone()
@@ -132,7 +132,7 @@ class Decider:
             if "useultrasound" in self.config:
                 if self.config["hardware"]["useultrasound"] in ['y','yes']:
                     if self.robot.servo_board.read_ultrasound(6, 7) < 1:
-                        return Action("move",0,-5)
+                        return Action("reverse",0,-5)
 
         if self.numberOfFailedIterations < 5:
             return Action("stop",0,0)

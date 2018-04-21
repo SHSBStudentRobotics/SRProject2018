@@ -74,7 +74,10 @@ def move(robot,action,tokens, config):
             rightSpeed *= proportion
             
         setBothMotors(robot,config,leftSpeed,rightSpeed)              
-        
+
+    elif action.type == "reverse":
+        setBothMotors(robot, config, -averageSpeed, -averageSpeed)
+
 def setBothMotors(robot,config,left,right):
     if config["Hardware"]["InvertLeftMotor"].lower() in ["n","no","0"]:
         powerMotor(robot, int(config["Hardware"]["LeftMotorNumber"]), left, config)
